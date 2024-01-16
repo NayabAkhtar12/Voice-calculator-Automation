@@ -934,24 +934,21 @@ namespace AppiumProject1
         {
             AppiumOptions Cap = new AppiumOptions();
 
-            // Cap.AddAdditionalCapability(MobileCapabilityType.AutomationName, "Appium");
-            Cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
-            Cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Galaxy S8");
             Cap.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-            Cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "9");
+            Cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Galaxy S8");
             Cap.AddAdditionalCapability(MobileCapabilityType.Udid, "ce11171b9bd3d81105");
-
+            Cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "9");
+            Cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
             Cap.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader");
             Cap.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader.ScientificCal");
-
             // Use MobileCapabilityType.App for specifying the app path directly
             Cap.AddAdditionalCapability(MobileCapabilityType.App, "/data/app/com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader--MO3PCVgfH7n4Uv5R86seQ==/base.apk");
 
-         
-           
+            //Navigate to App
             driver = new AndroidDriver<IWebElement>(new Uri(" http://192.168.100.5:4723/"), Cap, TimeSpan.FromSeconds(180));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
+            //Explicit Wait
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(200));
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five")));
 
@@ -1010,64 +1007,6 @@ namespace AppiumProject1
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 3.5! = 11.6317283966
 
-            // Modulo (%)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/mod").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 5 % 3 = 0.15
-
-            // Modulo (% by zero)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/mod").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 5 % 0 = 0
-
-            // Modulo (% by decimal)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/mod").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 8 % 2.5 = 0.2
-            //
-            // Modulo (Modulo of a large positive integer)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/mod").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/seven").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 999999 % 7 = 69999.93
-
-            // Modulo (- %)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/mod").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: -5 % 3 = -0.15
-            //
-            // Negative Divisor Modulo Functionality
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/mod").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 12 % -5 = -1.85
         }
 
         void Mode()

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voice_Calculator", "AppiumProject1\Voice_Calculator.csproj", "{92A71A94-00F2-4E3A-B300-7A375479763F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject2", "UnitTestProject2\UnitTestProject2.csproj", "{6C126CF9-2E3A-418A-BE0C-AEF625C0E19E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{92A71A94-00F2-4E3A-B300-7A375479763F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A71A94-00F2-4E3A-B300-7A375479763F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A71A94-00F2-4E3A-B300-7A375479763F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C126CF9-2E3A-418A-BE0C-AEF625C0E19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C126CF9-2E3A-418A-BE0C-AEF625C0E19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C126CF9-2E3A-418A-BE0C-AEF625C0E19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C126CF9-2E3A-418A-BE0C-AEF625C0E19E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
