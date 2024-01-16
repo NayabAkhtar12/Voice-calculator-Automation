@@ -16,31 +16,33 @@ namespace AppiumProject1
     {
         AppiumDriver<IWebElement> driver;
 
-        /*
+        [TestInitialize] public void Setup() 
+        {
+            AppiumOptions Cap = new AppiumOptions();
+
+            // Cap.AddAdditionalCapability(MobileCapabilityType.AutomationName, "Appium");
+            Cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
+            Cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "OPPO A16");
+            Cap.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
+            Cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "11");
+            Cap.AddAdditionalCapability(MobileCapabilityType.Udid, "ONOZSG4H8HSGW8HY");
+
+            Cap.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader");
+            Cap.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader.ScientificCal");
+
+            // Use MobileCapabilityType.App for specifying the app path directly
+            Cap.AddAdditionalCapability(MobileCapabilityType.App, "/data/app/~~Zo15jkFq8xo5rMEqaW-4nA==/com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader-Xhsb1iDX2CxmrskcxDYvmg==/base.apk=com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader");
+
+            driver = new AndroidDriver<IWebElement>(new Uri("http://169.254.80.80:4723/"), Cap, TimeSpan.FromSeconds(180));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+        }
+
          [TestMethod]
 
          //Operations of Scientific Calculator
          //Addition
          public void Addition()
          {
-             AppiumOptions Cap = new AppiumOptions();
-
-             // Cap.AddAdditionalCapability(MobileCapabilityType.AutomationName, "Appium");
-             Cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
-             Cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "OPPO A16");
-             Cap.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-             Cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "11");
-             Cap.AddAdditionalCapability(MobileCapabilityType.Udid, "ONOZSG4H8HSGW8HY");
-
-             Cap.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader");
-             Cap.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader.ScientificCal");
-
-             // Use MobileCapabilityType.App for specifying the app path directly
-             Cap.AddAdditionalCapability(MobileCapabilityType.App, "/data/app/~~Zo15jkFq8xo5rMEqaW-4nA==/com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader-Xhsb1iDX2CxmrskcxDYvmg==/base.apk=com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader");
-
-             driver = new AndroidDriver<IWebElement>(new Uri("http://169.254.80.80:4723/"), Cap, TimeSpan.FromSeconds(180));
-             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
              //Simple Addition
              driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
              driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/plus").Click();
@@ -179,12 +181,12 @@ namespace AppiumProject1
 
          }
 
-                                          // <---------------------------->
+        // <---------------------------->
 
 
-         //Subtration
+        //Subtration
 
-         [TestMethod]
+        [TestMethod]
          public void Subtration()
          {
              AppiumOptions Cap = new AppiumOptions();
@@ -698,7 +700,7 @@ namespace AppiumProject1
         // Exponential and Logarithmic Functions
 
         [TestMethod]
-        public void Trignometric()
+        public void LogExponentFunctions()
         {
             AppiumOptions Cap = new AppiumOptions();
 
@@ -925,10 +927,10 @@ namespace AppiumProject1
 
 
         }
-            */
+            
         // <---------------------------->
         // Other Funcs
-
+        //pi, !, 
         [TestMethod]
         public void OtherFunctions()
         {
@@ -949,8 +951,8 @@ namespace AppiumProject1
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             //Explicit Wait
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(200));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five")));
+          //  var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(200));
+            //wait.Until(ExpectedConditions.ElementIsVisible(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five")));
 
             // Constants pi
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/pi").Click();
@@ -1041,7 +1043,6 @@ namespace AppiumProject1
 
         }
        
-                  //  
-
+                 
     }
     }
