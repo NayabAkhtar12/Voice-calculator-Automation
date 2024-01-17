@@ -80,7 +80,7 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-        // Test Data: ln(10.5) = 3.02042488614
+        // Test Data: ln(10.5) = 2.35137..
 
         // Common Logarithm (ln)
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/ln").Click();
@@ -96,14 +96,6 @@ namespace UnitTestProject2
     }
 
         // <---------------------------->
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            // Code for cleaning up resources, closing the app, etc.
-            driver.Quit();
-        }
-
 
     }
     }

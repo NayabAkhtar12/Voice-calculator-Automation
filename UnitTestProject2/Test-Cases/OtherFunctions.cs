@@ -94,13 +94,5 @@ namespace UnitTestProject2
 
         // <---------------------------->
 
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            // Code for cleaning up resources, closing the app, etc.
-            driver.Quit();
-        }
-
-
     }
     }

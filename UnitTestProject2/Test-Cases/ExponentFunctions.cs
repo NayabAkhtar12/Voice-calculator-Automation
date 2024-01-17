@@ -20,7 +20,7 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 2 ^ 5 = 8
+            // Test Data: 2 ^ 5 = 32
 
             // Exponent of Decimal
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
@@ -41,7 +41,7 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: -1.5 ^ 2 = 2.25 
+            // Test Data: -1.5 ^ 2 = -2.25 
 
             // Exponent of large value
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
@@ -139,14 +139,6 @@ namespace UnitTestProject2
             // Test Data: sqrt(-25.0) = error
         }
             // <---------------------------->
-
-            [TestCleanup]
-        public void TestCleanup()
-        {
-            // Code for cleaning up resources, closing the app, etc.
-            driver.Quit();
-        }
-
 
     }
     }

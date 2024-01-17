@@ -8,13 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Chrome;
 
 namespace UnitTestProject2
 {
     public class Baseclass
     {
       public  AppiumDriver<IWebElement> driver;
-
+     
         [TestInitialize]
         public void Setup()
         {
@@ -33,6 +34,15 @@ namespace UnitTestProject2
             //Navigate to App
             driver = new AndroidDriver<IWebElement>(new Uri(" http://192.168.100.5:4723/"), Cap, TimeSpan.FromSeconds(180));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+        }
+
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            // Code for cleaning up resources, closing the app, etc.
+            driver.CloseApp();
+            driver.Quit();
         }
     }
 }
