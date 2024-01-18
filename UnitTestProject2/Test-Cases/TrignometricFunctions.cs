@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
@@ -12,7 +10,7 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace UnitTestProject2
 {
     [TestClass]
-    [Parallelizable(ParallelScope.Fixtures)]
+    //[Parallelizable(ParallelScope.Fixtures)]
 
     public class TrignometricFunctions : Baseclass
     {

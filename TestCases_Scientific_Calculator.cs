@@ -6,12 +6,11 @@ using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
-using static NUnit.Framework.Constraints.Tolerance;
 
 namespace AppiumProject1
 {
 
-    [TestClass]
+   // [TestClass]
     public class TestCases_Scientific_Calculator
     {
         AppiumDriver<IWebElement> driver;

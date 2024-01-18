@@ -15,7 +15,7 @@ namespace UnitTestProject2
     public class Baseclass
     {
       public  AppiumDriver<IWebElement> driver;
-     
+
         [TestInitialize]
         public void Setup()
         {
@@ -32,7 +32,8 @@ namespace UnitTestProject2
             Cap.AddAdditionalCapability(MobileCapabilityType.App, "/data/app/com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader--MO3PCVgfH7n4Uv5R86seQ==/base.apk");
 
             //Navigate to App
-            driver = new AndroidDriver<IWebElement>(new Uri(" http://192.168.100.5:4723/"), Cap, TimeSpan.FromSeconds(180));
+            driver = new AndroidDriver<IWebElement>(new Uri("http://192.168.100.5:4723/"), Cap, TimeSpan.FromSeconds(180));
+
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 

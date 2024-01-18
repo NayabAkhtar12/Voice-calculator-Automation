@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace UnitTestProject2.POM
             driver.FindElement(Button2).Click();
             driver.FindElement(Button3).Click();
             driver.FindElement(Button4).Click();
-
+            //IMobileElement<MobileElement>
         }
         //public void ButtonEqual()
         //{
