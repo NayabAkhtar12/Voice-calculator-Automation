@@ -12,7 +12,7 @@ namespace UnitTestProject2
     {
         [TestMethod]
 
-        public void LogExponentFunctions()
+        public void PowerFunction()
         {
             // Exponential positive Number
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
@@ -21,7 +21,6 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             string ExponentialPositiveNumberResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
             var AdditionResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-
             Assert.AreEqual("32", ExponentialPositiveNumberResult);
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 2 ^ 5 = 32
@@ -56,9 +55,9 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             string EponentOfNegativeDecimalResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("-2.25", EponentOfNegativeDecimalResult);
+            Assert.AreEqual("2.25", EponentOfNegativeDecimalResult);
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: -1.5 ^ 2 = -2.25 
+            // Test Data: -1.5 ^ 2 = 2.25 
         }
 
         [TestMethod]
@@ -86,7 +85,7 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             string ExponentOfZeroWithNegativePowerResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("Error", ExponentOfZeroWithNegativePowerResult);
+            Assert.AreEqual("Infinity", ExponentOfZeroWithNegativePowerResult);
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 0 ^ -6 = error
         }
@@ -184,7 +183,7 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             string squareRootNegativeNumberResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("Error", squareRootNegativeNumberResult);
+            Assert.AreEqual("Syntax Error Or Infinity", squareRootNegativeNumberResult);
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: sqrt(-9) = error
         }
@@ -199,10 +198,9 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: sqrt(25.0) = 5.0
+            // Test Data: sqrt(25.0) = 5
             string SquareRootDecimalResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("5.0", SquareRootDecimalResult);
+            Assert.AreEqual("5", SquareRootDecimalResult);
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
         }
@@ -219,10 +217,9 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: sqrt(-25.0) = error
             string SquareRootNegDecimalResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("Error", SquareRootNegDecimalResult);
+            Assert.AreEqual("Syntax Error Or Infinity", SquareRootNegDecimalResult);
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
         }

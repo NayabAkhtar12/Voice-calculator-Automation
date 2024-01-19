@@ -34,7 +34,7 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: log(-8) = Error
             var CommonlogNegvalue = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("-8", CommonlogNegvalue, "Result is not as Expected");
+            Assert.AreEqual("Syntax Error Or Infinity", CommonlogNegvalue, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
             // Common Logarithm (log)
@@ -47,7 +47,7 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: log(10.5) = 1.02118929907
             var Commonlogposvalue = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("1.02118929907", Commonlogposvalue, "Result is not as Expected");
+            Assert.AreEqual("1.021189299069938", Commonlogposvalue, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
             // Common Logarithm (log)
@@ -61,7 +61,7 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: log(-20.5) = error
             var CommonlogDecimalvalue = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("error", CommonlogDecimalvalue, "Result is not as Expected");
+            Assert.AreEqual("Syntax Error Or Infinity", CommonlogDecimalvalue, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
             // Natural Logarithm (ln)
@@ -69,10 +69,9 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight").Click();
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-        driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: ln(8) = 2.079
             var NaturalLogarithmResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("2.079", NaturalLogarithmResult, "Result is not as Expected");
+            Assert.AreEqual("2.0794415416798357", NaturalLogarithmResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
             // Common Logarithm (ln)
@@ -83,7 +82,7 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: ln(-8) = Error
             var CommonLogNegResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("Error", CommonLogNegResult, "Result is not as Expected");
+            Assert.AreEqual("Syntax Error Or Infinity", CommonLogNegResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
 
@@ -97,7 +96,7 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: ln(10.5) = 2.35137..
             var CommonLogarithmposResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("2.35137..", CommonLogarithmposResult, "Result is not as Expected");
+            Assert.AreEqual("2.3513752571634776", CommonLogarithmposResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
             // Common Logarithm (ln)
@@ -109,10 +108,9 @@ namespace UnitTestProject2
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
         driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-        driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: ln(-20.5) = error
             var CommonLogNegDecResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("2.35137..", CommonLogNegDecResult, "Result is not as Expected");
+            Assert.AreEqual("Syntax Error Or Infinity", CommonLogNegDecResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
         }

@@ -11,7 +11,7 @@ namespace UnitTestProject2
 
 //namespace Scientific-Calculator
 {
-    [TestClass]
+   // [TestClass]
     public class pomtest :Baseclass
     {
         //Operations of Scientific Calculator

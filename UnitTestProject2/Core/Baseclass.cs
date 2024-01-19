@@ -34,7 +34,7 @@ namespace UnitTestProject2
             //Navigate to App
             driver = new AndroidDriver<IWebElement>(new Uri("http://192.168.100.5:4723/"), Cap, TimeSpan.FromSeconds(180));
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+          //  driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
         }
 
 

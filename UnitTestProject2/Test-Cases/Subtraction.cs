@@ -37,9 +37,9 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Expected Result: 2.5 - 1.5 = 1.0
+            // Expected Result: 2.5 - 1.5 = 1
             var SubtractionOfDecimalsResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("1.0", SubtractionOfDecimalsResult, "Result is not as Expected");
+            Assert.AreEqual("1", SubtractionOfDecimalsResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
             // Subtraction of Integer and Decimals
@@ -105,8 +105,8 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Expected Result: (-7) - 3.5 = -10.5
-            var SubtractionOfNegativePositiveDecimalsResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("-10.5", SubtractionOfNegativePositiveDecimalsResult, "Result is not as Expected");
+            var SubtractionOfNegPosDecResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
+            Assert.AreEqual("-10.5", SubtractionOfNegPosDecResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
             // Subtraction of Negative Decimals
@@ -124,9 +124,9 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Expected Result: (-2.5) - (-1.5) = -1.0
+            // Expected Result: (-2.5) - (-1.5) = -1
             var SubtractionOfNegativeDecimalsResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("-1.0", SubtractionOfNegativeDecimalsResult, "Result is not as Expected");
+            Assert.AreEqual("-1", SubtractionOfNegativeDecimalsResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
 
@@ -168,10 +168,9 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Expected Result: (-7) - 3.5) = Error
+            // Expected Result: (-7) - 3.5) = Syntax Error Or Infinity
             var ErrorHandlingBracket = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("Error", ErrorHandlingBracket, "Result is not as Expected");
+            Assert.AreEqual("Syntax Error Or Infinity", ErrorHandlingBracket, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
         }
