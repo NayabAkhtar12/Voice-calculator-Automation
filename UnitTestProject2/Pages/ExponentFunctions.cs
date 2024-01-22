@@ -8,7 +8,7 @@ using System;
 namespace UnitTestProject2
 {
     [TestClass]
-    public class ExponentFunctions : Baseclass
+    public class ExponentFunctions : TestInitialize
     {
         [TestMethod]
 

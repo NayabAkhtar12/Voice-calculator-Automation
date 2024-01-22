@@ -8,7 +8,7 @@ using System;
 namespace UnitTestProject2
 {
     [TestClass]
-    public class LogarithmicFunctions : Baseclass
+    public class LogarithmicFunctions : TestInitialize
     {
 
 

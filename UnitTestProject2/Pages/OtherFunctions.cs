@@ -8,7 +8,7 @@ using System;
 namespace UnitTestProject2
 {
     [TestClass]
-    public class OtherFunctions : Baseclass
+    public class OtherFunctions : TestInitialize
     {
         // Other Funcs
         //pi, !, 

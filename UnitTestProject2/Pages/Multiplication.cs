@@ -8,7 +8,7 @@ using System;
 namespace UnitTestProject2
 {
     [TestClass]
-    public class Multiplication :Baseclass
+    public class Multiplication :TestInitialize
     {
         //Multiplication
         [TestMethod]

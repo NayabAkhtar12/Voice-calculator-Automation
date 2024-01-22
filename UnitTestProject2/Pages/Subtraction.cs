@@ -9,7 +9,7 @@ namespace UnitTestProject2
 {
 
     [TestClass]
-    public class Subtration :Baseclass
+    public class Subtration :TestInitialize
     {
 
         //Subtration

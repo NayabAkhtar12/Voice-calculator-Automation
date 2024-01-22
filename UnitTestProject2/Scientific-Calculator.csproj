@@ -72,17 +72,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="POM\AdditionPOM.cs" />
-    <Compile Include="Test-Cases\Addition.cs" />
-    <Compile Include="Test-Cases\pomtest.cs" />
-    <Compile Include="Test-Cases\OtherFunctions.cs" />
-    <Compile Include="Test-Cases\ExponentFunctions.cs" />
-    <Compile Include="Test-Cases\LogarithmicFunctions.cs" />
-    <Compile Include="Test-Cases\TrignometricFunctions.cs" />
-    <Compile Include="Test-Cases\Division.cs" />
-    <Compile Include="Test-Cases\Multiplication.cs" />
-    <Compile Include="Test-Cases\Subtraction.cs" />
-    <Compile Include="Core\Baseclass.cs" />
+    <Compile Include="Core\Driver.cs" />
+    <Compile Include="Pages\AdditionPOM.cs" />
+    <Compile Include="Pages\Addition.cs" />
+    <Compile Include="Test-Class\TestClass.cs" />
+    <Compile Include="Pages\OtherFunctions.cs" />
+    <Compile Include="Pages\ExponentFunctions.cs" />
+    <Compile Include="Pages\LogarithmicFunctions.cs" />
+    <Compile Include="Pages\TrignometricFunctions.cs" />
+    <Compile Include="Pages\Division.cs" />
+    <Compile Include="Pages\Multiplication.cs" />
+    <Compile Include="Pages\Subtraction.cs" />
+    <Compile Include="Core\TestInitialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

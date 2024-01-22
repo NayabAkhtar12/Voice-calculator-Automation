@@ -12,7 +12,7 @@ namespace UnitTestProject2
     [TestClass]
     //[Parallelizable(ParallelScope.Fixtures)]
 
-    public class TrignometricFunctions : Baseclass
+    public class TrignometricFunctions : TestInitialize
     {
         [TestMethod]
        // [Priority(1)]

@@ -8,7 +8,7 @@ using System;
 namespace UnitTestProject2
 {
     [TestClass]
-    public class Division :Baseclass
+    public class Division :TestInitialize
     {
         [TestMethod]
         public void DivisionOp()

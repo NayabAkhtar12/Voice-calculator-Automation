@@ -4,8 +4,11 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 using System;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using OpenQA.Selenium.Support.PageObjects;
+using PageFactory = OpenQA.Selenium.Support.PageObjects.PageFactory;
 
 namespace UnitTestProject2
 
@@ -13,12 +16,19 @@ namespace UnitTestProject2
 {
     [TestClass]
 
-    public class Addition : Baseclass
+    public class Addition : TestInitialize
     {
+
+        public Addition(AppiumDriver<IWebElement> driver)
+        {
+            PageFactory.InitElements(driver, this);
+            this.driver = driver;
+        }
+
         [TestMethod]
         //Operations of Scientific Calculator
         //Addition
-        public void AdditionOp()
+        public void SimpleAdditionWithIdentifiers()
         {
             // Addition
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
@@ -29,6 +39,11 @@ namespace UnitTestProject2
             var AdditionResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
             Assert.AreEqual("8", AdditionResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
+
+        [TestMethod]
+        public void DecimalAddition()
+        {
 
             // Addition of Decimals
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
@@ -43,7 +58,11 @@ namespace UnitTestProject2
             var DecimalAdditionResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
             Assert.AreEqual("4", DecimalAdditionResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
+        [TestMethod]
+        public void DecimalIntegerAdd()
+        {
             // Addition of Integer and Decimals
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/plus").Click();
@@ -52,10 +71,14 @@ namespace UnitTestProject2
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Expected Result: 8 + 4.2 = 12.2
-            var DecimalIntegerAdd= driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
+            var DecimalIntegerAdd = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
             Assert.AreEqual("12.2", DecimalIntegerAdd, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
+        [TestMethod]
+        public void ZeroAddition()
+        {
             // Addition of Zero
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/plus").Click();
@@ -66,7 +89,11 @@ namespace UnitTestProject2
             var ZeroAdditionResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
             Assert.AreEqual("10", ZeroAdditionResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
+        [TestMethod]
+        public void PositiveNegativeAddition()
+        {
             // Positive-Negative Addition
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/plus").Click();
@@ -79,7 +106,11 @@ namespace UnitTestProject2
             var PositiveNegativeAdditionResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
             Assert.AreEqual("2", PositiveNegativeAdditionResult, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
+        [TestMethod]
+        public void NegativeIntegerAddition()
+        {
             // Negative Integer Addition
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
@@ -96,7 +127,11 @@ namespace UnitTestProject2
             var NegativeIntegerAddition = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
             Assert.AreEqual("-6", NegativeIntegerAddition, "Result is not as Expected");
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
+        [TestMethod]
+        public void AdditionOfNegativeDecimals()
+        {
             // Addition of Negative Decimals
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
@@ -118,8 +153,11 @@ namespace UnitTestProject2
             Assert.AreEqual("-4", AdditionOfNegativeDecimals, "Result is not as Expected");
             // Clear screen
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
-
+        [TestMethod]
+        public void AdditionOfNegativePositiveDecimals()
+        {
             // Addition of Negative positive Decimals
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
@@ -137,8 +175,11 @@ namespace UnitTestProject2
             Assert.AreEqual("-3.5", AdditionOfNegativePositiveDecimals, "Result is not as Expected");
             // Clear screen
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
-
+        [TestMethod]
+        public void ErrorHandling()
+        {
             // Error Handling
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
@@ -157,8 +198,11 @@ namespace UnitTestProject2
             Assert.AreEqual("Syntax Error Or Infinity", ErrorHandlingResult, "Result is not as Expected");
             // Clear screen
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+        }
 
-
+        [TestMethod]
+        public void LargeNumbersAddition()
+        {
             // Scenario: Handling of large numbers
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
             driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();

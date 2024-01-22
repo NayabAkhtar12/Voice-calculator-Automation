@@ -9,18 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Chrome;
+using UnitTestProject2.Core;
 
 namespace UnitTestProject2
 {
-    public class Baseclass
+    public class TestInitialize:Driver
     {
-      public  AppiumDriver<IWebElement> driver;
-
+      
+        public AppiumDriver<IWebElement> driver;
         [TestInitialize]
         public void Setup()
         {
             AppiumOptions Cap = new AppiumOptions();
-
             Cap.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
             Cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Galaxy S8");
             Cap.AddAdditionalCapability(MobileCapabilityType.Udid, "ce11171b9bd3d81105");
