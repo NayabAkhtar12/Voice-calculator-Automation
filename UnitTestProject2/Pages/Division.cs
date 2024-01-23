@@ -2,132 +2,197 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Enums;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnitTestProject2.Core;
 
-namespace UnitTestProject2
+namespace UnitTestProject2.POM
 {
-    [TestClass]
-    public class Division :TestInitialize
+    public class Division : TestInitialize
     {
-        [TestMethod]
-        public void DivisionOp()
+        private Identifiers I;
+
+        public Division(AppiumDriver<IWebElement> driver)
         {
-            // Division
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-           //Expected Result: 100/5 = 20
-            string divisionResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("20", divisionResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            // Initialize I1 in the constructor
+            I = new Identifiers(driver);
+        }
 
-            // Division by Zero
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
+        // Division
+        public void BasicDivision()
+        {
+            //Expected Result: 100/5 = 20
+            Assert.IsNotNull(I, "Identifiers instance is not initialized");
+            I.Button1.Click();
+            I.Zero.Click();
+            I.Zero.Click();
+            I.Divide.Click();
+            I.Button5.Click();
+            I.Equal.Click();
+            var BasicDivResult = I.FinalResult.Text;
+            Assert.AreEqual("20", BasicDivResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+
+        public void DivisionOfZero()
+        {
+            // Division of Zero 
             //Expected Result: 8/0 = Syntax Error Or Infinity
-            string divisionByZeroResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("Syntax Error Or Infinity", divisionByZeroResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            I.Button8.Click();
+            I.Divide.Click();
+            I.Zero.Click();
+            I.Equal.Click();
+            var DivisionOfZeroResult = I.FinalResult.Text;
+            Assert.AreEqual("Syntax Error Or Infinity", DivisionOfZeroResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
 
-            // Division of Decimals
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
+        //Division of Decimals
+        public void DecimalDivision()
+        {
             //Expected Result: 1.5/2.5 = 0.6
-            string decimalMultiplicationResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("0.6", decimalMultiplicationResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            I.Button1.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Divide.Click();
+            I.Button2.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Equal.Click();
+            var DecimalDivisionResult = I.FinalResult.Text;
+            Assert.AreEqual("0.6", DecimalDivisionResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
 
-            // Positive-Negative Division
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
+        // Positive-Negative Division
+        public void PosNegDivision()
+        {
             //Expected Result: 5/(-3) = -1.66666666667
-            string positiveNegativeMultiplicationResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("-1.6666666666666667", positiveNegativeMultiplicationResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            I.Button5.Click();
+            I.Divide.Click();
+            I.Leftbracket.Click();
+            I.Minus.Click();
+            I.Button3.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+            var PosNegDivResult = I.FinalResult.Text;
+            Assert.AreEqual("-1.6666666666666667", PosNegDivResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
 
+        public void NegativeIntegerDivision()
+        {
             // Negative Integer Division
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/four").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             //Expected Result: (-8)/(-4) = 2
-            string NegativeIntegerMultiplicationResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("2", NegativeIntegerMultiplicationResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            I.Leftbracket.Click();
+            I.Minus.Click();
+            I.Button8.Click();
+            I.Rightbracket.Click();
+            I.Divide.Click();
+            I.Leftbracket.Click();
+            I.Minus.Click();
+            I.Button4.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+            var NegativeIntegerDivision = I.FinalResult.Text;
+            Assert.AreEqual("2", NegativeIntegerDivision, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
 
-            // Division of Negative Decimals
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/four").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
+        // Division of Negative Decimals
+        public void DivisionOfNegativeDecimals()
+        {
             //Expected Result: (-4.5)/(-2.5) = 1.8
-            string negativeDecimalMultiplicationResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("1.8", negativeDecimalMultiplicationResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            // Scenario: Handling of large numbers
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/seven").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string largeNumberDivisionResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("1.12612612626816", largeNumberDivisionResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
+            I.Leftbracket.Click();
+            I.Minus.Click();
+            I.Button4.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Rightbracket.Click();
+            I.Divide.Click();
+            I.Leftbracket.Click();
+            I.Minus.Click();
+            I.Button2.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+            var NegDecDivisionResult = I.FinalResult.Text;
+            Assert.AreEqual("1.8", NegDecDivisionResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
 
-        // <---------------------------->
+        public void NegPosDecDivision()
+        {
+            //Division of Negative positive Decimals
+            // Expected Result: (-7) / 3.5 = -2
+            I.Leftbracket.Click();
+            I.Minus.Click();
+            I.Button7.Click();
+            I.Rightbracket.Click();
+            I.Divide.Click();
+            I.Button3.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Equal.Click();
+            var NegPosDecDivisionResult = I.FinalResult.Text;
+            Assert.AreEqual("-2", NegPosDecDivisionResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
 
+        public void ErrorHandling()
+        {
+            // Error Handling
+            // Expected Result: (-7) / 3.5) = Syntax Error Or Infinity
+            I.Leftbracket.Click();
+            I.Minus.Click();
+            I.Button7.Click();
+            I.Rightbracket.Click();
+            I.Divide.Click();
+            I.Button3.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+            var ErrorHandlingResult = I.FinalResult.Text;
+            Assert.AreEqual("Syntax Error Or Infinity", ErrorHandlingResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+
+        public void LargeNumbersDiv()
+        {
+            // Scenario: Handling of large numbers
+            // Expected Result: 999999999 / 888888888 = 111111111
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Button9.Click();
+            I.Divide.Click();
+            I.Button8.Click();
+            I.Button8.Click();
+            I.Button8.Click();
+            I.Button8.Click();
+            I.Button8.Click();
+            I.Button8.Click();
+            I.Button8.Click();
+            I.Button8.Click();
+            I.Button9.Click();
+            I.Equal.Click();
+            var largeNumberDivisionResult = I.FinalResult.Text;
+            //Assert.AreEqual("1.12612612626816", largeNumberDivisionResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+
+        }
     }
     }

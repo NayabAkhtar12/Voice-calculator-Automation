@@ -12,37 +12,77 @@ namespace UnitTestProject2
 {
     //Operations of Scientific Calculator
     [TestClass]
-    public class TestClass :TestInitialize
+    public class TestClass : TestInitialize
     {
         Addition A1;
-        AdditionPOM P;
+        Addition T;
+        Subtraction S;
+        Multiplication Mul;
+        Division D;
         //Addition
+         [TestMethod]
+        public void Addition()
+        {
+            T = new Addition(driver);
+            T.BasicAddition();
+            T.DecimalAddition();
+            T.DecimalIntegerAdd();
+            T.PositiveNegativeAddition();
+            T.NegativeIntegerAddition();
+            T.ZeroAddition();
+            T.AdditionOfNegativeDecimals();
+            T.AdditionOfNegativePositiveDecimals();
+            T.ErrorHandling();
+            T.LargeNumbersAddition();
+        }
 
+        //Subtraction
         [TestMethod]
-        public void PomTest()
+        public void Subtraction()
         {
-            P = new AdditionPOM(driver);
-            P.ClickAdd();
+            S = new Subtraction(driver);
+            S.BasicSubtration();
+            S.SubtractionOfDecimals();
+            S.DecimalIntegerSub();
+            S.SubtractionOfZero();
+            S.PositiveNegativeSubtraction();
+            S.NegIntSubtraction();
+            S.SubtractionOfNegPosDec();
+            S.SubtractionOfNegativeDecimals();
+            S.ErrorHandling();
+            S.LargeNumbersSubtraction();
         }
 
-
-      //  [TestMethod]
-        public void AdditionOp()
+        //Multiplication
+        [TestMethod]
+        public void Multiplication()
         {
-            A1 = new Addition(driver);
-            A1.SimpleAdditionWithIdentifiers();
-            A1.DecimalAddition();
-            A1.DecimalIntegerAdd();
-            A1.ZeroAddition();
-            A1.PositiveNegativeAddition();
-            A1.NegativeIntegerAddition();
-            A1.AdditionOfNegativeDecimals();
-            A1.AdditionOfNegativePositiveDecimals();
-            A1.ErrorHandling();
-            A1.LargeNumbersAddition();
+            Mul = new Multiplication(driver);
+
+            Mul.MultiplicationOp();
+            Mul.DecimalMultiplication();
+            Mul.PosNegMultiplication();
+            Mul.MultiplicationOfZero();
+            Mul.NegativeIntegerMultiplication();
+            Mul.MultiplicationOfNegativeDecimals();
+            Mul.NegPosDecMultiplication();
+            Mul.ErrorHandling();
+            Mul.LargeNumbersMultiplication();
         }
-
-      
-
-    } 
+        //Division
+        [TestMethod]
+        public void Division()
+        {
+            D = new Division(driver);
+            D.BasicDivision();
+            D.DivisionOfZero();
+            D.DecimalDivision();
+            D.PosNegDivision();
+            D.NegativeIntegerDivision();
+            D.DivisionOfNegativeDecimals();
+            D.NegPosDecDivision();
+            D.ErrorHandling();
+            D.LargeNumbersDiv();
+        }
+    }
 }

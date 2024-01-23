@@ -78,6 +78,8 @@
     <Compile Include="..\TestCases_Scientific_Calculator.cs">
       <Link>TestCases_Scientific_Calculator.cs</Link>
     </Compile>
+    <Compile Include="Addition.cs" />
+    <Compile Include="AdditionPOM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
