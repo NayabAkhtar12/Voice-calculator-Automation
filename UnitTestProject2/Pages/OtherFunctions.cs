@@ -2,112 +2,129 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Enums;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Support.PageObjects;
+using ScientificCalculator.Core;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace UnitTestProject2
+namespace ScientificCalculator.Pages
 {
-    [TestClass]
-    public class OtherFunctions : TestInitialize
+     class OtherFunctions : TestInitialize
     {
-        // Other Funcs
-        //pi, !, 
+        private Identifiers I;
 
-        [TestMethod]
-        public void OtherFunctns()
+        public OtherFunctions(AppiumDriver<IWebElement> driver)
         {
-            //Explicit Wait
-            //  var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(200));
-            //wait.Until(ExpectedConditions.ElementIsVisible(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five")));
+            // Initialize I1 in the constructor
+            I = new Identifiers(driver);
+        }
+
+        // Assert.IsNotNull(I, "Identifiers instance is not initialized");
+        public void ConstantPi()
+        {
+            //For Degree Mode
+            //I.Degree.Click();
+            //// Validate if the mode is switched to Degrees
+            //Assert.AreEqual("Degree", I.Degree.Text);
+            Assert.IsNotNull(I, "Identifiers instance is not initialized");
 
             // Constants pi
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/pi").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
+            I.PI.Click();
+            I.Equal.Click();
+
             // Test Data: π= 3.14159
-            var PI = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("3.141592653589793", PI, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            // Constants pi/3
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/pi").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: π/3 = 1.04719755
-            var Pidivthree = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("1.0471975511965976", Pidivthree, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            // Factorial (!)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/factorial").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: 5! = 120
-            var Fact = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("120", Fact, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            // Factorial (zero!)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/factorial").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: 0! = 1
-            var Factzero = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("1", Factzero, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            // Factorial (-50!)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/factorial").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: -50! = error
-            var FactNegValue = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("Syntax Error Or Infinity", FactNegValue, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            // Factorial (20.0!)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/factorial").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: 20.0! = 2.432902e
-            var FactPosValue = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-           // Assert.AreEqual("2.432902e", FactPosValue, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            // Factorial (3.5!)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/factorial").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: 3.5! = 11.6317283966
-            var FactDecValue = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            //Assert.AreEqual("11.6317283966", FactDecValue, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
+            var piResult = I.FinalResult.Text;
+            Assert.AreEqual("3.141592653589793", piResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
-        //Mode Switch
-        void Mode()
+        public void ConstantPiDivide()
         {
-            // Switch to Radian
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Click();
-            // Validate if the mode is switched to Degrees
-            Assert.AreEqual("Radian", driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Text);
+            // Constants pi/3
+            I.PI.Click();
+            I.Divide.Click();
+            I.Button3.Click();
+            I.Equal.Click();
 
-            // Switch to Degree
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Click();
-            // Validate if the mode is switched to Radians
-            Assert.AreEqual("Degree", driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Text);
+            // Test Data: π/3 = 1.04719755
+            var piDivThreeResult = I.FinalResult.Text;
+            Assert.AreEqual("1.0471975511965976", piDivThreeResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+        public void Factorial()
+        {
+            // Factorial (!)
+            // Test Data: 5! = 120
 
+            I.Button5.Click();
+            I.Factorial.Click();
+            I.Equal.Click();
+            var factorialResult = I.FinalResult.Text;
+            Assert.AreEqual("120", factorialResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+        public void FactorialZero()
+        {
+            // Factorial (zero!)
+            // Test Data: 0! = 1
+
+            I.Zero.Click();
+            I.Factorial.Click();
+            I.Equal.Click();
+
+            var factorialZeroResult = I.FinalResult.Text;
+            Assert.AreEqual("1", factorialZeroResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+        public void FactorialNegativeNum()
+        {
+            // Factorial (-50!)
+            // Test Data: -50! = error
+            I.Minus.Click();
+            I.Button5.Click();
+            I.Zero.Click();
+            I.Factorial.Click();
+            I.Equal.Click();
+
+            var FactorialNegResult = I.FinalResult.Text;
+            Assert.AreEqual("Syntax Error Or Infinity", FactorialNegResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
-        // <---------------------------->
+        public void FactorialDecimal()
+        {
+            // Factorial (20.0!)
+            I.Button2.Click();
+            I.Zero.Click();
+            I.point.Click();
+            I.Zero.Click();
+            I.Factorial.Click();
+            I.Equal.Click();
+
+            // Test Data: 20.0! = 2.432902e
+            var FactorialDecimal = I.FinalResult.Text;
+            // Assert.AreEqual("2.432902e", FactorialDecimal, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+        public void FactorialDec()
+        {
+            // Factorial (3.5!)
+            I.Button3.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Factorial.Click();
+            I.Equal.Click();
+
+            // Test Data: 3.5! = 11.6317283966
+            var FactorialDec = I.FinalResult.Text;
+            // Assert.AreEqual("11.6317283966", FactorialDec, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+
 
     }
-    }
+}

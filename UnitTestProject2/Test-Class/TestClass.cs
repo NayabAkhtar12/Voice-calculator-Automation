@@ -3,58 +3,64 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
+using ScientificCalculator.Core;
+using ScientificCalculator.Pages;
 using System;
 using System.Security.Cryptography;
-using UnitTestProject2.POM;
 
-namespace UnitTestProject2
+namespace ScientificCalculator.Test_Class
 
 {
-    //Operations of Scientific Calculator
     [TestClass]
-    public class TestClass : TestInitialize
+     public class TestClass : TestInitialize
     {
-        Addition A1;
-        Addition T;
-        Subtraction S;
+        Addition Add;
+        Subtraction Sub;
         Multiplication Mul;
-        Division D;
+        Division Div;
+        ExponentFunctions Exp;
+        LogarithmicFunctions LF;
+        TrignometricFunctions TF;
+        OtherFunctions OF;
+
+        //Operations of Scientific Calculator
         //Addition
-         [TestMethod]
+
+        [TestMethod, Priority(1)]
         public void Addition()
         {
-            T = new Addition(driver);
-            T.BasicAddition();
-            T.DecimalAddition();
-            T.DecimalIntegerAdd();
-            T.PositiveNegativeAddition();
-            T.NegativeIntegerAddition();
-            T.ZeroAddition();
-            T.AdditionOfNegativeDecimals();
-            T.AdditionOfNegativePositiveDecimals();
-            T.ErrorHandling();
-            T.LargeNumbersAddition();
+            Add = new Addition(driver);
+            Add.BasicAddition();
+            Add.DecimalAddition();
+            Add.DecimalIntegerAdd();
+            Add.PositiveNegativeAddition();
+            Add.NegativeIntegerAddition();
+            Add.ZeroAddition();
+            Add.AdditionOfNegativeDecimals();
+            Add.AdditionOfNegativePositiveDecimals();
+            Add.ErrorHandling();
+            Add.LargeNumbersAddition();
         }
 
         //Subtraction
-        [TestMethod]
+        [TestMethod, Priority(2)]
         public void Subtraction()
         {
-            S = new Subtraction(driver);
-            S.BasicSubtration();
-            S.SubtractionOfDecimals();
-            S.DecimalIntegerSub();
-            S.SubtractionOfZero();
-            S.PositiveNegativeSubtraction();
-            S.NegIntSubtraction();
-            S.SubtractionOfNegPosDec();
-            S.SubtractionOfNegativeDecimals();
-            S.ErrorHandling();
-            S.LargeNumbersSubtraction();
+            Sub = new Subtraction(driver);
+            Sub.BasicSubtration();
+            Sub.SubtractionOfDecimals();
+            Sub.DecimalIntegerSub();
+            Sub.SubtractionOfZero();
+            Sub.PositiveNegativeSubtraction();
+            Sub.NegIntSubtraction();
+            Sub.SubtractionOfNegPosDec();
+            Sub.SubtractionOfNegativeDecimals();
+            Sub.ErrorHandling();
+            Sub.LargeNumbersSubtraction();
         }
 
         //Multiplication
-        [TestMethod]
+        [TestMethod, Priority(3)]
         public void Multiplication()
         {
             Mul = new Multiplication(driver);
@@ -69,20 +75,88 @@ namespace UnitTestProject2
             Mul.ErrorHandling();
             Mul.LargeNumbersMultiplication();
         }
+       
         //Division
         [TestMethod]
         public void Division()
         {
-            D = new Division(driver);
-            D.BasicDivision();
-            D.DivisionOfZero();
-            D.DecimalDivision();
-            D.PosNegDivision();
-            D.NegativeIntegerDivision();
-            D.DivisionOfNegativeDecimals();
-            D.NegPosDecDivision();
-            D.ErrorHandling();
-            D.LargeNumbersDiv();
+            Div = new Division(driver);
+            Div.BasicDivision();
+            Div.DivisionOfZero();
+            Div.DecimalDivision();
+            Div.PosNegDivision();
+            Div.NegativeIntegerDivision();
+            Div.DivisionOfNegativeDecimals();
+            Div.NegPosDecDivision();
+            Div.ErrorHandling();
+            Div.LargeNumbersDiv();
+        }
+
+        //Exponent Functions
+        [TestMethod]
+        public void ExponentFunctions()
+        {
+            Exp = new ExponentFunctions(driver);
+            Exp.PowerFunction();
+            Exp.ExponentOfDecimal();
+            Exp.ExponentOfNegativeDecimal();
+            Exp.ExponentOfLargeValue();
+            Exp.ExponentOfZeroWithNegativePower();
+            Exp.ExponentOfZeroWithPositivePower();
+            Exp.ExponentOfPosNumberWithZero();
+            Exp.ExponentialDecimalToNegativeExponent();
+            Exp.ExponentialXSquare();
+            Exp.SquareRoot();
+            Exp.SquareRootZero();
+            Exp.SquareRootNegativeNumber();
+            Exp.SquareRootDecimal();
+            Exp.TestSquareRootNegativeDecimal();
+        }
+
+       // LogarithmicFunctions
+        [TestMethod]
+        public void LogarithmicFunctions()
+        {
+            //LF=  LogarithmicFunctions
+            LF = new LogarithmicFunctions(driver);
+            LF.CommonLog();
+            LF.CommonLogNeg();
+            LF.CommonLogPos();
+            LF.CommonLogDecimal();
+            LF.NaturalLogarithm();
+            LF.NaturalLogarithmNegative();
+            LF.NaturalLogarithmNegativeDecimal();
+            LF.NaturalLogarithmPositiveDecimal();       
+        }
+
+        // TrignometricFunctions
+        [TestMethod]
+        public void TrignometricFunctions()
+        {
+            // Tf= TrignometricFunctions
+            TF = new TrignometricFunctions(driver);
+            TF.Sin30DegreeMode();
+            TF.Sin60DegreeMode();
+            TF.Cos();
+            TF.Tan45();
+            TF.Tan120();
+            TF.Tan90();
+            TF.SinRadian();
+        }
+
+        // OtherFunctions
+        [TestMethod]
+        public void OtherFunctions()
+        {
+            //OF= Other Functions
+            OF = new OtherFunctions(driver);
+            OF.ConstantPi();
+            OF.ConstantPiDivide();
+            OF.Factorial();
+            OF.FactorialZero();
+            OF.FactorialNegativeNum();
+            OF.FactorialDecimal();
+            OF.FactorialDec();
         }
     }
 }

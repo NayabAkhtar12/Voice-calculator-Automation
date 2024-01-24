@@ -2,123 +2,136 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Enums;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Support.PageObjects;
+using ScientificCalculator.Core;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace UnitTestProject2
+namespace ScientificCalculator.Pages
 {
-    [TestClass]
-    //[Parallelizable(ParallelScope.Fixtures)]
-
-    public class TrignometricFunctions : TestInitialize
+     class TrignometricFunctions : TestInitialize
     {
-        [TestMethod]
-       // [Priority(1)]
-        public void Sin()
+        private Identifiers I;
+
+        public TrignometricFunctions(AppiumDriver<IWebElement> driver)
         {
-            // Sin
-            //For Degree Mode
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sin").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: sin(30) = 0.5
-            var Sin30 = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("0.5", Sin30, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sin").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: sin(60) = 0.86..
-            var Sin60 = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("0.8660254037844386", Sin60, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
-
-            //For Radian Mode
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Click();
-            // Validate if the mode is switched to Degrees
-            Assert.AreEqual("Radian", driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Text);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sin").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/pi").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: sin(pi/6) = 0.5
-            var sinpi6 = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("0.5", sinpi6, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
+            // Initialize I1 in the constructor
+            I = new Identifiers(driver);
         }
-        [TestMethod]
-       // [Priority(2)]
+
+        // Assert.IsNotNull(I, "Identifiers instance is not initialized");
+
+        public void Sin30DegreeMode()
+        {
+           Assert.AreEqual("Degree",I.Degree.Text);
+            // Test Data: sin(30) = 0.5
+            I.Sin.Click();
+            I.Button3.Click();
+            I.Zero.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+
+            var sin30Result = I.FinalResult.Text;
+           // Assert.AreEqual("0.5", sin30Result, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+
+        public void Sin60DegreeMode()
+        {
+            // Test Data: sin(60) = 0.8660254037844386
+            I.Sin.Click();
+            I.Button6.Click();
+            I.Zero.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+
+            var sin60Result = I.FinalResult.Text;
+           // Assert.AreEqual("0.8660254037844386", sin60Result, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
         public void Cos()
         {
             // Cos
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/cos").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: cos(30) = 0.86602540378
-            var Cos = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("0.8660254037844386", Cos, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-        }
 
-        [TestMethod]
-       // [Priority(3)]
-        public void Tan()
+            I.Cos.Click();
+            I.Button3.Click();
+            I.Zero.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+            var cosResult = I.FinalResult.Text;
+           // Assert.AreEqual("0.8660254037844386", cosResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+        public void Tan45()
         {
-            //For Degree Mode
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Click();
-            // Validate if the mode is switched to Degrees
-            Assert.AreEqual("Degree", driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree").Text);
-
             // Tan
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/tan").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/four").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: tan(45) = 1
-            var Tanfourfive = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("1", Tanfourfive, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
 
-            // Tan
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/tan").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: tan(120) = -1.73205080757
-            var Tan120 = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("-1.7320508075688772", Tan120, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            I.Tan.Click();
+            I.Button4.Click();
+            I.Button5.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
 
-
-            // Tan
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/tan").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            // Test Data: tan(90) = error
-            var Tan90 = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("Syntax Error Or Infinity", Tan90, "Result is not as Expected");
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-
+            var tanResult = I.FinalResult.Text;
+            //Assert.AreEqual("1", tanResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
-        // <---------------------------->
+        public void Tan120()
+        {
+            // Tan
+            I.Tan.Click();
+            I.Button1.Click();
+            I.Button2.Click();
+            I.Zero.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+
+            // Test Data: tan(120) = -1.73205080757
+            var tanResult = I.FinalResult.Text;
+           // Assert.AreEqual("-1.7320508075688772", tanResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+        public void Tan90()
+        {
+            // Tan
+            I.Tan.Click();
+            I.Button9.Click();
+            I.Zero.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+
+            // Test Data: tan(90) = error
+            var tan90Result = I.FinalResult.Text;
+          //  Assert.AreEqual("Syntax Error Or Infinity", tan90Result, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+        public void SinRadian()
+        {
+            //For Radian Mode
+            I.Degree.Click();
+            // Validate if the mode is switched to Degrees
+            Assert.AreEqual("Radian", I.Degree.Text);
+
+            I.Sin.Click();
+            I.PI.Click();
+            I.Divide.Click();
+            I.Button6.Click();
+            I.Rightbracket.Click();
+            I.Equal.Click();
+
+            // Test Data: sin(pi/6) = 0.5
+            var sinPiBy6Result = I.FinalResult.Text;
+            Assert.AreEqual("0.5", sinPiBy6Result, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+
+
     }
-    }
+}

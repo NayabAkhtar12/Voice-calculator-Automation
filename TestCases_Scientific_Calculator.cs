@@ -4,7 +4,9 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Support.UI;
+using ScientificCalculator.Pages;
 using System;
+using System.Security.Principal;
 using System.Threading;
 
 namespace AppiumProject1
@@ -14,7 +16,7 @@ namespace AppiumProject1
     public class TestCases_Scientific_Calculator
     {
         AppiumDriver<IWebElement> driver;
-
+       
         [TestInitialize] public void Setup() 
         {
             AppiumOptions Cap = new AppiumOptions();

@@ -4,16 +4,16 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Support.PageObjects;
+using ScientificCalculator.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnitTestProject2.Core;
 
-namespace UnitTestProject2.POM
+namespace ScientificCalculator.Pages
 {
-    public class Multiplication : TestInitialize
+     class Multiplication : TestInitialize
     {
         private Identifiers I;
 

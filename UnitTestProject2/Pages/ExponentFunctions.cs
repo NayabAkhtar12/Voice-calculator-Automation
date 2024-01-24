@@ -2,229 +2,227 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Enums;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ScientificCalculator.Core;
 
-namespace UnitTestProject2
+namespace ScientificCalculator.Pages
 {
-    [TestClass]
-    public class ExponentFunctions : TestInitialize
+     class ExponentFunctions : TestInitialize
     {
-        [TestMethod]
+        private Identifiers I;
 
+        public ExponentFunctions(AppiumDriver<IWebElement> driver)
+        {
+            // Initialize I1 in the constructor
+            I = new Identifiers(driver);
+        }
+
+        // Assert.IsNotNull(I, "Identifiers instance is not initialized");
+
+        // Exponent
         public void PowerFunction()
         {
-            // Exponential positive Number
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string ExponentialPositiveNumberResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            var AdditionResult = driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")).Text;
-            Assert.AreEqual("32", ExponentialPositiveNumberResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 2 ^ 5 = 32
+            I.Button2.Click();
+            I.Power.Click();
+            I.Button5.Click();
+            I.Equal.Click();
+            var PowerResult = I.FinalResult.Text;
+            Assert.AreEqual("32", PowerResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
-
-        [TestMethod]
         public void ExponentOfDecimal()
         {
-            // Exponent of Decimal
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string ExponentOfDecimalResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("2.25", ExponentOfDecimalResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 1.5 ^ 2 = 2.25
+            // Test Data: 1.5 ^ 2.25 = 
+            I.Button1.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Power.Click();
+            I.Button2.Click();
+            I.point.Click();
+            I.Button2.Click();
+            I.Button5.Click();
+            I.Equal.Click();
+
+            var ExponentOfDecimalResult = I.FinalResult.Text;
+            Assert.AreEqual("2.4900343193257237", ExponentOfDecimalResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
         public void ExponentOfNegativeDecimal()
         {
-            // Exponent of Negative Decimal
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string EponentOfNegativeDecimalResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("2.25", EponentOfNegativeDecimalResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: -1.5 ^ 2 = 2.25 
-        }
+            // Test Data: -1.5 ^ 2.25 = 2.25 
+            I.Minus.Click();
+            I.Button1.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Power.Click();
+            I.Button2.Click();
+            I.point.Click();
+            I.Button2.Click();
+            I.Button5.Click();
+            I.Equal.Click();
 
-        [TestMethod]
+            var ExponentOfNegDecimalResult = I.FinalResult.Text;
+            Assert.AreEqual("Syntax Error Or Infinity", ExponentOfNegDecimalResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
         public void ExponentOfLargeValue()
         {
-            // Exponent of large value
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string ExponentOfLargeValueResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("1000000", ExponentOfLargeValueResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
-            // Test Data: 10 ^ 6 = 1,000,000 
+            // Test Data: 10 ^ 6 = 1,000,000
+            I.Button1.Click();
+            I.Zero.Click();
+            I.Power.Click();
+            I.Button6.Click();
+            I.Equal.Click();
+
+            var ExponentOfLargeValueResult = I.FinalResult.Text;
+            Assert.AreEqual("1000000", ExponentOfLargeValueResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
         public void ExponentOfZeroWithNegativePower()
         {
-            // Exponent of zero with negative power
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string ExponentOfZeroWithNegativePowerResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("Infinity", ExponentOfZeroWithNegativePowerResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 0 ^ -6 = error
+            I.Zero.Click();
+            I.Power.Click();
+            I.Minus.Click();
+            I.Button6.Click();
+            I.Equal.Click();
+
+            var ExponentOfZeroWithNegPowerResult = I.FinalResult.Text;
+            Assert.AreEqual("Infinity", ExponentOfZeroWithNegPowerResult, "Result is not as Expected");
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
         public void ExponentOfZeroWithPositivePower()
         {
-            // Exponent of zero with positive power
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string exponentOfZeroWithPositivePowerResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("0", exponentOfZeroWithPositivePowerResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 0 ^ 6 = 0
-        }
+            I.Zero.Click();
+            I.Power.Click();
+            I.Button6.Click();
+            I.Equal.Click();
 
-        [TestMethod]
-        public void ExponentOf6WithZero()
+            var ExponentOfZeroWithPositivePowerResult = I.FinalResult.Text;
+            Assert.AreEqual("0", ExponentOfZeroWithPositivePowerResult);
+            I.ClearScreen.Click();
+        }
+        public void ExponentOfPosNumberWithZero()
         {
-            // Exponent of 6 with zero
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string exponentOf6WithZeroResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("1", exponentOf6WithZeroResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 6 ^ 0 = 1
-        }
+            I.Button6.Click();
+            I.Power.Click();
+            I.Zero.Click();
+            I.Equal.Click();
 
+            var ExponentOfPosNumWithZeroResult = I.FinalResult.Text;
+            Assert.AreEqual("1", ExponentOfPosNumWithZeroResult);
+            I.ClearScreen.Click();
+        }
         [TestMethod]
         public void ExponentialDecimalToNegativeExponent()
         {
-            // Decimal to Negative Exponent Functionality
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string exponentialDecimalToNegativeExponentResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("4", exponentialDecimalToNegativeExponentResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 0.5^(-2) = 4
+            I.Zero.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Power.Click();
+            I.Minus.Click();
+            I.Button2.Click();
+            I.Equal.Click();
+
+            var exponentialDecimalToNegativeExponentResult = I.FinalResult.Text;
+            Assert.AreEqual("4", exponentialDecimalToNegativeExponentResult);
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
         public void ExponentialXSquare()
         {
-            // Exponential (X^2)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/square").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string exponentialXSquareResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("25", exponentialXSquareResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: 5 ^ 2 = 25
+            I.Button5.Click();
+            I.Square.Click();
+            I.Equal.Click();
+
+            var exponentialXSquareResult = I.FinalResult.Text;
+            Assert.AreEqual("25", exponentialXSquareResult);
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
         public void SquareRoot()
         {
-            // Square Root (sqrt)
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sqrt").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/four").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string squareRootResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("2", squareRootResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: sqrt(4) = 2
+            I.SquareRoot.Click();
+            I.Button4.Click();
+            I.Equal.Click();
+
+            var squareRootResult = I.FinalResult.Text;
+            Assert.AreEqual("2", squareRootResult);
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
         public void SquareRootZero()
         {
-            // Square Root (sqrt) 0
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sqrt").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string squareRootZeroResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("0", squareRootZeroResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: sqrt(0) = 0
+            I.SquareRoot.Click();
+            I.Zero.Click();
+            I.Equal.Click();
+
+            var squareRootZeroResult = I.FinalResult.Text;
+            Assert.AreEqual("0", squareRootZeroResult);
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
         public void SquareRootNegativeNumber()
         {
-            // Square Root (sqrt) negative number
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sqrt").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
-            string squareRootNegativeNumberResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("Syntax Error Or Infinity", squareRootNegativeNumberResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
             // Test Data: sqrt(-9) = error
+            I.SquareRoot.Click();
+            I.Minus.Click();
+            I.Button9.Click();
+            I.Equal.Click();
+
+            var squareRootNegativeNumberResult = I.FinalResult.Text;
+            Assert.AreEqual("Syntax Error Or Infinity", squareRootNegativeNumberResult);
+            I.ClearScreen.Click();
         }
 
-        [TestMethod]
-        public void TestSquareRootDecimal()
+
+        public void SquareRootDecimal()
         {
-            // Square Root (sqrt) decimal 
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sqrt").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: sqrt(25.0) = 5
-            string SquareRootDecimalResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("5", SquareRootDecimalResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            I.SquareRoot.Click();
+            I.Button2.Click();
+            I.Button5.Click();
+            I.point.Click();
+            I.Zero.Click();
+            I.Equal.Click();
 
+            var squareRootDecimalResult = I.FinalResult.Text;
+            Assert.AreEqual("5", squareRootDecimalResult);
+            I.ClearScreen.Click();
         }
-
         [TestMethod]
         public void TestSquareRootNegativeDecimal()
-
         {
-            // Square Root (sqrt) negative decimal 
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sqrt").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero").Click();
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal").Click();
             // Test Data: sqrt(-25.0) = error
-            string SquareRootNegDecimalResult = driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult").Text;
-            Assert.AreEqual("Syntax Error Or Infinity", SquareRootNegDecimalResult);
-            driver.FindElementById("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen").Click();
+            I.SquareRoot.Click();
+            I.Minus.Click();
+            I.Button2.Click();
+            I.Button5.Click();
+            I.point.Click();
+            I.Zero.Click();
+            I.Equal.Click();
 
+            var squareRootNegDecimalResult = I.FinalResult.Text;
+            Assert.AreEqual("Syntax Error Or Infinity", squareRootNegDecimalResult);
+            I.ClearScreen.Click();
         }
-
-        // <---------------------------->
 
     }
 }

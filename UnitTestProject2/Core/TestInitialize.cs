@@ -9,11 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Chrome;
-using UnitTestProject2.Core;
 
-namespace UnitTestProject2
+namespace ScientificCalculator.Core
 {
-    public class TestInitialize:Driver
+    public class TestInitialize
     {
       
         public AppiumDriver<IWebElement> driver;

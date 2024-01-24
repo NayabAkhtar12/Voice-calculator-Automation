@@ -9,11 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnitTestProject2.Core;
+using ScientificCalculator.Core;
 
-namespace UnitTestProject2.POM
+namespace ScientificCalculator.Pages
 {
-    public class Division : TestInitialize
+     class Division : TestInitialize
     {
         private Identifiers I;
 
