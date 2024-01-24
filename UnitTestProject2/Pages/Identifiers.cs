@@ -19,111 +19,41 @@ namespace ScientificCalculator.Pages
         public Identifiers(AppiumDriver<IWebElement> driver)
         {
             this.driver = driver;
-            PageFactory.InitElements(driver, this);
-
         }
 
         //Identifiers
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one")] 
-       public IWebElement Button1 { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two")]
-     public   IWebElement Button2 { get; set; }
-
-       [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three")]
-        public IWebElement Button3 { get; set; }
-
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/four")]
-        public IWebElement Button4 { get; set; }
-
-
-        [FindsBy(How=How.Id,Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five")]
-        public IWebElement Button5 { get; set; }
-
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six")]
-        public IWebElement Button6 { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/seven")]
-        public IWebElement Button7 { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight")]
-        public IWebElement Button8 { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine")]
-        public IWebElement Button9 { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point")]
-        public IWebElement point { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero")]
-        public IWebElement Zero { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/pi")]
-        public IWebElement PI { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal")]
-        public IWebElement Equal { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/plus")]
-        public IWebElement Plus { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus")]
-        public IWebElement Minus { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/multiply")]
-        public IWebElement Multiply { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide")]
-        public IWebElement Divide { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sin")]
-        public IWebElement Sin { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/tan")]
-        public IWebElement Tan { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/cos")]
-        public IWebElement Cos { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/factorial")]
-        public IWebElement Factorial { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket")]
-        public IWebElement Leftbracket { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket")]
-        public IWebElement Rightbracket { get; set; }
-
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sqrt")]
-        public IWebElement SquareRoot { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/square")]
-        public IWebElement Square { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern")]
-        public IWebElement Power { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen")]
-        public IWebElement ClearScreen { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clear")]
-        public IWebElement Backspace { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree")]
-        public IWebElement Degree { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/log")]
-        public IWebElement Log { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/ln")]
-        public IWebElement Ln { get; set; }
-
-        [FindsBy(How = How.Id, Using = "com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult")]
-        public IWebElement FinalResult { get; set; }
-
+        public IWebElement Button1 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/one"));
+        public IWebElement Button2 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/two"));
+        public IWebElement Button3 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/three"));
+        public IWebElement Button4 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/four"));
+        public IWebElement Button5 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/five"));
+        public IWebElement Button6 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/six"));
+        public IWebElement Button7 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/seven"));
+        public IWebElement Button8 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/eight"));
+        public IWebElement Button9 => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/nine"));
+        public IWebElement zero => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/zero"));
+        public IWebElement point => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/point"));
+        public IWebElement PI => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/pi"));
+        public IWebElement Equal => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/equal"));
+        public IWebElement Plus => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/plus"));
+        public IWebElement Minus => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/minus"));
+        public IWebElement Multiply => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/multiply"));
+        public IWebElement Divide => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/divide"));
+        public IWebElement Sin => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sin"));
+        public IWebElement Tan => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/tan"));
+        public IWebElement Cos => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/cos"));
+        public IWebElement Factorial => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/factorial"));
+        public IWebElement LeftBracket => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/leftBracket"));
+        public IWebElement Rightbracket => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/rightBracket"));
+        public IWebElement SquareRoot => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/sqrt"));
+        public IWebElement Square => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/square"));
+        public IWebElement Power => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/powern"));
+        public IWebElement ClearScreen => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clearScreen"));
+        public IWebElement Backspace => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/clear"));
+        public IWebElement Degree => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/degree"));
+        public IWebElement Log => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/log"));
+        public IWebElement Ln => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/ln"));
+        public IWebElement FinalResult => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult"));
         //Methods for Identifiers like click
     }
 }

@@ -1,3 +1,5 @@
+D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\obj\Debug\Scientific-Calculator.csproj.AssemblyReference.cache
+D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\obj\Debug\Scientific-Calculator.csproj.CoreCompileInputs.cache
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -20,8 +22,6 @@ D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\bin\Debug\Mi
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\bin\Debug\Newtonsoft.Json.xml
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\bin\Debug\WebDriver.xml
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\bin\Debug\WebDriver.Support.xml
-D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\obj\Debug\Scientific-Calculator.csproj.AssemblyReference.cache
-D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\obj\Debug\Scientific-Calculator.csproj.CoreCompileInputs.cache
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\obj\Debug\Scientific-Calculator.csproj.CopyComplete
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\obj\Debug\Scientific Calculator.dll
 D:\Automation-Projects\Voice-calculator-Automation\UnitTestProject2\obj\Debug\Scientific Calculator.pdb

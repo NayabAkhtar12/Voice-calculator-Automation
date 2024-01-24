@@ -23,13 +23,14 @@ namespace ScientificCalculator.Test_Class
         TrignometricFunctions TF;
         OtherFunctions OF;
 
-        //Operations of Scientific Calculator
-        //Addition
+            //Operations of Scientific Calculator
+            //Addition
 
-        [TestMethod, Priority(1)]
-        public void Addition()
+             [TestMethod, Priority(1)]
+            public void Addition()
         {
             Add = new Addition(driver);
+            Add.ClearScreen();
             Add.BasicAddition();
             Add.DecimalAddition();
             Add.DecimalIntegerAdd();
@@ -47,6 +48,7 @@ namespace ScientificCalculator.Test_Class
         public void Subtraction()
         {
             Sub = new Subtraction(driver);
+            Sub.ClearScreen();
             Sub.BasicSubtration();
             Sub.SubtractionOfDecimals();
             Sub.DecimalIntegerSub();
@@ -60,11 +62,11 @@ namespace ScientificCalculator.Test_Class
         }
 
         //Multiplication
-        [TestMethod, Priority(3)]
+       [TestMethod, Priority(3)]
         public void Multiplication()
         {
             Mul = new Multiplication(driver);
-
+            Mul.ClearScreen();
             Mul.MultiplicationOp();
             Mul.DecimalMultiplication();
             Mul.PosNegMultiplication();
@@ -77,10 +79,12 @@ namespace ScientificCalculator.Test_Class
         }
        
         //Division
-        [TestMethod]
+      [TestMethod]
         public void Division()
         {
             Div = new Division(driver);
+            Div.ClearScreen();
+            Div.ClearScreen();
             Div.BasicDivision();
             Div.DivisionOfZero();
             Div.DecimalDivision();
@@ -93,10 +97,11 @@ namespace ScientificCalculator.Test_Class
         }
 
         //Exponent Functions
-        [TestMethod]
+       [TestMethod]
         public void ExponentFunctions()
         {
             Exp = new ExponentFunctions(driver);
+            Exp.ClearScreen();
             Exp.PowerFunction();
             Exp.ExponentOfDecimal();
             Exp.ExponentOfNegativeDecimal();
@@ -114,11 +119,12 @@ namespace ScientificCalculator.Test_Class
         }
 
        // LogarithmicFunctions
-        [TestMethod]
+       [TestMethod]
         public void LogarithmicFunctions()
         {
             //LF=  LogarithmicFunctions
             LF = new LogarithmicFunctions(driver);
+            LF.ClearScreen();
             LF.CommonLog();
             LF.CommonLogNeg();
             LF.CommonLogPos();
@@ -130,11 +136,12 @@ namespace ScientificCalculator.Test_Class
         }
 
         // TrignometricFunctions
-        [TestMethod]
+       [TestMethod]
         public void TrignometricFunctions()
         {
             // Tf= TrignometricFunctions
             TF = new TrignometricFunctions(driver);
+            TF.ClearScreen();
             TF.Sin30DegreeMode();
             TF.Sin60DegreeMode();
             TF.Cos();
@@ -150,6 +157,7 @@ namespace ScientificCalculator.Test_Class
         {
             //OF= Other Functions
             OF = new OtherFunctions(driver);
+            OF.ClearScreen();
             OF.ConstantPi();
             OF.ConstantPiDivide();
             OF.Factorial();

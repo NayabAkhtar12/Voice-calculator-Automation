@@ -15,12 +15,31 @@ namespace ScientificCalculator.Pages
 {
      class OtherFunctions : TestInitialize
     {
-        private Identifiers I;
+        private Extra I;
 
+        public void ClearScreen()
+        {
+            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            {
+                // If not clear, perform the clear operation
+                I.ClearScreen.Click();
+
+                // You can add an assertion or print a message to verify the clear operation
+                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+
+                // Or print a message
+                Console.WriteLine("Result screen has been cleared.");
+            }
+            else
+            {
+                // The result screen is already clear
+                Console.WriteLine("Result screen is already clear.");
+            }
+        }
         public OtherFunctions(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Identifiers(driver);
+            I = new Extra(driver);
         }
 
         // Assert.IsNotNull(I, "Identifiers instance is not initialized");
@@ -105,9 +124,9 @@ namespace ScientificCalculator.Pages
             I.Factorial.Click();
             I.Equal.Click();
 
-            // Test Data: 20.0! = 2.432902e
+            // Test Data: 20.0! = 2.432902e+18
             var FactorialDecimal = I.FinalResult.Text;
-            // Assert.AreEqual("2.432902e", FactorialDecimal, "Result is not as Expected");
+            Assert.AreEqual("2.432902e+18", FactorialDecimal, "Result is not as Expected");
             I.ClearScreen.Click();
         }
         public void FactorialDec()
@@ -121,7 +140,7 @@ namespace ScientificCalculator.Pages
 
             // Test Data: 3.5! = 11.6317283966
             var FactorialDec = I.FinalResult.Text;
-            // Assert.AreEqual("11.6317283966", FactorialDec, "Result is not as Expected");
+             Assert.AreEqual("11.6317283966", FactorialDec, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 

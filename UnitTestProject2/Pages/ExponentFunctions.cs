@@ -15,14 +15,33 @@ namespace ScientificCalculator.Pages
 {
      class ExponentFunctions : TestInitialize
     {
-        private Identifiers I;
+        private Extra I;
 
         public ExponentFunctions(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Identifiers(driver);
+            I = new Extra(driver);
         }
 
+        public void ClearScreen()
+        {
+            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            {
+                // If not clear, perform the clear operation
+                I.ClearScreen.Click();
+
+                // You can add an assertion or print a message to verify the clear operation
+                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+
+                // Or print a message
+                Console.WriteLine("Result screen has been cleared.");
+            }
+            else
+            {
+                // The result screen is already clear
+                Console.WriteLine("Result screen is already clear.");
+            }
+        }
         // Assert.IsNotNull(I, "Identifiers instance is not initialized");
 
         // Exponent

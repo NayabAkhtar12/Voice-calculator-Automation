@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Identifiers.cs" />
     <Compile Include="Pages\OtherFunctions.cs" />
     <Compile Include="Pages\TrignometricFunctions.cs" />
     <Compile Include="Pages\LogarithmicFunctions.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Pages\Multiplication.cs" />
     <Compile Include="Pages\Subtraction.cs" />
     <Compile Include="Pages\Addition.cs" />
-    <Compile Include="Pages\Identifiers.cs" />
+    <Compile Include="Pages\Extra.cs" />
     <Compile Include="Test-Class\TestClass.cs" />
     <Compile Include="Core\TestInitialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

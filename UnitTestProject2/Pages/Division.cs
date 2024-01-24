@@ -15,14 +15,32 @@ namespace ScientificCalculator.Pages
 {
      class Division : TestInitialize
     {
-        private Identifiers I;
+        private Extra I;
 
         public Division(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Identifiers(driver);
+            I = new Extra(driver);
         }
+        public void ClearScreen()
+        {
+            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            {
+                // If not clear, perform the clear operation
+                I.ClearScreen.Click();
 
+                // You can add an assertion or print a message to verify the clear operation
+                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+
+                // Or print a message
+                Console.WriteLine("Result screen has been cleared.");
+            }
+            else
+            {
+                // The result screen is already clear
+                Console.WriteLine("Result screen is already clear.");
+            }
+        }
         // Division
         public void BasicDivision()
         {
@@ -168,7 +186,7 @@ namespace ScientificCalculator.Pages
         public void LargeNumbersDiv()
         {
             // Scenario: Handling of large numbers
-            // Expected Result: 999999999 / 888888888 = 111111111
+            // Expected Result: 999999999 / 888888888 = 1.125
             I.Button9.Click();
             I.Button9.Click();
             I.Button9.Click();
@@ -190,7 +208,7 @@ namespace ScientificCalculator.Pages
             I.Button9.Click();
             I.Equal.Click();
             var largeNumberDivisionResult = I.FinalResult.Text;
-            //Assert.AreEqual("1.12612612626816", largeNumberDivisionResult, "Result is not as Expected");
+            Assert.AreEqual("1.125", largeNumberDivisionResult, "Result is not as Expected");
             I.ClearScreen.Click();
 
         }

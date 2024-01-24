@@ -15,14 +15,33 @@ namespace ScientificCalculator.Pages
 {
      class TrignometricFunctions : TestInitialize
     {
-        private Identifiers I;
+        private Extra I;
 
         public TrignometricFunctions(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Identifiers(driver);
+            I = new Extra(driver);
         }
 
+        public void ClearScreen()
+        {
+            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            {
+                // If not clear, perform the clear operation
+                I.ClearScreen.Click();
+
+                // You can add an assertion or print a message to verify the clear operation
+                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+
+                // Or print a message
+                Console.WriteLine("Result screen has been cleared.");
+            }
+            else
+            {
+                // The result screen is already clear
+                Console.WriteLine("Result screen is already clear.");
+            }
+        }
         // Assert.IsNotNull(I, "Identifiers instance is not initialized");
 
         public void Sin30DegreeMode()
@@ -36,7 +55,7 @@ namespace ScientificCalculator.Pages
             I.Equal.Click();
 
             var sin30Result = I.FinalResult.Text;
-           // Assert.AreEqual("0.5", sin30Result, "Result is not as Expected");
+            Assert.AreEqual("0.5", sin30Result, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
@@ -50,7 +69,7 @@ namespace ScientificCalculator.Pages
             I.Equal.Click();
 
             var sin60Result = I.FinalResult.Text;
-           // Assert.AreEqual("0.8660254037844386", sin60Result, "Result is not as Expected");
+            Assert.AreEqual("0.8660254037844386", sin60Result, "Result is not as Expected");
             I.ClearScreen.Click();
         }
         public void Cos()
@@ -64,7 +83,7 @@ namespace ScientificCalculator.Pages
             I.Rightbracket.Click();
             I.Equal.Click();
             var cosResult = I.FinalResult.Text;
-           // Assert.AreEqual("0.8660254037844386", cosResult, "Result is not as Expected");
+            Assert.AreEqual("0.8660254037844386", cosResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
         public void Tan45()
@@ -79,7 +98,7 @@ namespace ScientificCalculator.Pages
             I.Equal.Click();
 
             var tanResult = I.FinalResult.Text;
-            //Assert.AreEqual("1", tanResult, "Result is not as Expected");
+            Assert.AreEqual("1", tanResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
@@ -95,7 +114,7 @@ namespace ScientificCalculator.Pages
 
             // Test Data: tan(120) = -1.73205080757
             var tanResult = I.FinalResult.Text;
-           // Assert.AreEqual("-1.7320508075688772", tanResult, "Result is not as Expected");
+            Assert.AreEqual("-1.7320508075688772", tanResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
         public void Tan90()
@@ -109,7 +128,7 @@ namespace ScientificCalculator.Pages
 
             // Test Data: tan(90) = error
             var tan90Result = I.FinalResult.Text;
-          //  Assert.AreEqual("Syntax Error Or Infinity", tan90Result, "Result is not as Expected");
+           Assert.AreEqual("Syntax Error Or Infinity", tan90Result, "Result is not as Expected");
             I.ClearScreen.Click();
         }
         public void SinRadian()
