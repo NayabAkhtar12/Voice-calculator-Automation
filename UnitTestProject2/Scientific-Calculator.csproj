@@ -81,7 +81,6 @@
     <Compile Include="Pages\Multiplication.cs" />
     <Compile Include="Pages\Subtraction.cs" />
     <Compile Include="Pages\Addition.cs" />
-    <Compile Include="Pages\Extra.cs" />
     <Compile Include="Test-Class\TestClass.cs" />
     <Compile Include="Core\TestInitialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

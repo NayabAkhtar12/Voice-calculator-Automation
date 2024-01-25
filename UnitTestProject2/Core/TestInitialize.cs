@@ -14,7 +14,7 @@ namespace ScientificCalculator.Core
 {
     public class TestInitialize
     {
-      
+
         public AppiumDriver<IWebElement> driver;
         [TestInitialize]
         public void Setup()
