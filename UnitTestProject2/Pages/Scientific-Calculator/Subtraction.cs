@@ -16,7 +16,7 @@ namespace ScientificCalculator.Pages
 {
      class Subtraction : TestInitialize
     {
-        private Extra I;
+        private Identifiers I;
 
         public void ClearScreen()
         {
@@ -40,7 +40,7 @@ namespace ScientificCalculator.Pages
         public Subtraction(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Extra(driver);
+            I = new Identifiers(driver);
         }
 
         //Methods for Identifiers like click
@@ -92,10 +92,10 @@ namespace ScientificCalculator.Pages
         {
             // Subtraction of Zero 
             // Expected Result: 0 - 10 = -10
-            I.Zero.Click();
+            I.zero.Click();
             I.Minus.Click();
             I.Button1.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Equal.Click();
             var SubtractionOfZeroResult = I.FinalResult.Text;
             Assert.AreEqual("-10", SubtractionOfZeroResult, "Result is not as Expected");
@@ -108,7 +108,7 @@ namespace ScientificCalculator.Pages
             // Expected Result: 5 - (-3) = 8
             I.Button5.Click();
             I.Minus.Click();
-            I.Leftbracket.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button3.Click();
             I.Rightbracket.Click();
@@ -122,12 +122,12 @@ namespace ScientificCalculator.Pages
         {
             // Negative Integer Subtraction
             // Expected Result: (-8) - (-4) = -4
-            I.Leftbracket.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button8.Click();
             I.Rightbracket.Click();
             I.Minus.Click();
-            I.Leftbracket.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button4.Click();
             I.Rightbracket.Click();
@@ -140,7 +140,7 @@ namespace ScientificCalculator.Pages
         {
             // Subtraction of Negative Positive Decimals
             // Expected Result: (-7) - 3.5 = -10.5
-            I.Leftbracket.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button7.Click();
             I.Rightbracket.Click();
@@ -159,14 +159,14 @@ namespace ScientificCalculator.Pages
         public void SubtractionOfNegativeDecimals()
         {
             // Expected Result: (-2.5) - (-1.5) = -1
-            I.Leftbracket.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button2.Click();
             I.point.Click();
             I.Button5.Click();
             I.Rightbracket.Click();
             I.Minus.Click();
-            I.Leftbracket.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button1.Click();
             I.point.Click();
@@ -183,7 +183,7 @@ namespace ScientificCalculator.Pages
         {
             // Error Handling
             // Expected Result: (-7) - 3.5) = Syntax Error Or Infinity
-            I.Leftbracket.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button7.Click();
             I.Rightbracket.Click();

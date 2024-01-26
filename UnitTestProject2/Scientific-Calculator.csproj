@@ -72,21 +72,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Identifiers.cs" />
-    <Compile Include="Pages\OtherFunctions.cs" />
-    <Compile Include="Pages\TrignometricFunctions.cs" />
-    <Compile Include="Pages\LogarithmicFunctions.cs" />
-    <Compile Include="Pages\ExponentFunctions.cs" />
-    <Compile Include="Pages\Division.cs" />
-    <Compile Include="Pages\Multiplication.cs" />
-    <Compile Include="Pages\Subtraction.cs" />
-    <Compile Include="Pages\Addition.cs" />
+    <Compile Include="Pages\Identifiers\Identifiers.cs" />
+    <Compile Include="Pages\Scientific-Calculator\OtherFunctions.cs" />
+    <Compile Include="Pages\Scientific-Calculator\TrignometricFunctions.cs" />
+    <Compile Include="Pages\Scientific-Calculator\LogarithmicFunctions.cs" />
+    <Compile Include="Pages\Scientific-Calculator\ExponentFunctions.cs" />
+    <Compile Include="Pages\Scientific-Calculator\Division.cs" />
+    <Compile Include="Pages\Scientific-Calculator\Multiplication.cs" />
+    <Compile Include="Pages\Scientific-Calculator\Subtraction.cs" />
+    <Compile Include="Pages\Scientific-Calculator\Addition.cs" />
     <Compile Include="Test-Class\TestClass.cs" />
     <Compile Include="Core\TestInitialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\EMI_Calculator\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

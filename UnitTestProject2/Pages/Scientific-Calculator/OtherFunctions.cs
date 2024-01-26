@@ -15,7 +15,7 @@ namespace ScientificCalculator.Pages
 {
      class OtherFunctions : TestInitialize
     {
-        private Extra I;
+        private Identifiers I;
 
         public void ClearScreen()
         {
@@ -39,7 +39,7 @@ namespace ScientificCalculator.Pages
         public OtherFunctions(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Extra(driver);
+            I = new Identifiers(driver);
         }
 
         // Assert.IsNotNull(I, "Identifiers instance is not initialized");
@@ -91,7 +91,7 @@ namespace ScientificCalculator.Pages
             // Factorial (zero!)
             // Test Data: 0! = 1
 
-            I.Zero.Click();
+            I.zero.Click();
             I.Factorial.Click();
             I.Equal.Click();
 
@@ -105,7 +105,7 @@ namespace ScientificCalculator.Pages
             // Test Data: -50! = error
             I.Minus.Click();
             I.Button5.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Factorial.Click();
             I.Equal.Click();
 
@@ -118,9 +118,9 @@ namespace ScientificCalculator.Pages
         {
             // Factorial (20.0!)
             I.Button2.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.point.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Factorial.Click();
             I.Equal.Click();
 

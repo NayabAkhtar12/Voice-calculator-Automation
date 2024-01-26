@@ -54,6 +54,6 @@ namespace ScientificCalculator.Pages
         public IWebElement Log => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/log"));
         public IWebElement Ln => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/ln"));
         public IWebElement FinalResult => driver.FindElement(By.Id(@"com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/finalResult"));
-        //Methods for Identifiers like click
+
     }
 }

@@ -15,12 +15,12 @@ namespace ScientificCalculator.Pages
 {
      class ExponentFunctions : TestInitialize
     {
-        private Extra I;
+        private Identifiers I;
 
         public ExponentFunctions(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Extra(driver);
+            I = new Identifiers(driver);
         }
 
         public void ClearScreen()
@@ -97,7 +97,7 @@ namespace ScientificCalculator.Pages
         {
             // Test Data: 10 ^ 6 = 1,000,000
             I.Button1.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Power.Click();
             I.Button6.Click();
             I.Equal.Click();
@@ -110,7 +110,7 @@ namespace ScientificCalculator.Pages
         public void ExponentOfZeroWithNegativePower()
         {
             // Test Data: 0 ^ -6 = error
-            I.Zero.Click();
+            I.zero.Click();
             I.Power.Click();
             I.Minus.Click();
             I.Button6.Click();
@@ -124,7 +124,7 @@ namespace ScientificCalculator.Pages
         public void ExponentOfZeroWithPositivePower()
         {
             // Test Data: 0 ^ 6 = 0
-            I.Zero.Click();
+            I.zero.Click();
             I.Power.Click();
             I.Button6.Click();
             I.Equal.Click();
@@ -138,7 +138,7 @@ namespace ScientificCalculator.Pages
             // Test Data: 6 ^ 0 = 1
             I.Button6.Click();
             I.Power.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Equal.Click();
 
             var ExponentOfPosNumWithZeroResult = I.FinalResult.Text;
@@ -149,7 +149,7 @@ namespace ScientificCalculator.Pages
         public void ExponentialDecimalToNegativeExponent()
         {
             // Test Data: 0.5^(-2) = 4
-            I.Zero.Click();
+            I.zero.Click();
             I.point.Click();
             I.Button5.Click();
             I.Power.Click();
@@ -190,7 +190,7 @@ namespace ScientificCalculator.Pages
         {
             // Test Data: sqrt(0) = 0
             I.SquareRoot.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Equal.Click();
 
             var squareRootZeroResult = I.FinalResult.Text;
@@ -219,7 +219,7 @@ namespace ScientificCalculator.Pages
             I.Button2.Click();
             I.Button5.Click();
             I.point.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Equal.Click();
 
             var squareRootDecimalResult = I.FinalResult.Text;
@@ -235,7 +235,7 @@ namespace ScientificCalculator.Pages
             I.Button2.Click();
             I.Button5.Click();
             I.point.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Equal.Click();
 
             var squareRootNegDecimalResult = I.FinalResult.Text;

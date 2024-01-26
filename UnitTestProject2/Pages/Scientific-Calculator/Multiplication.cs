@@ -4,23 +4,23 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Support.PageObjects;
+using ScientificCalculator.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ScientificCalculator.Core;
 
 namespace ScientificCalculator.Pages
 {
-     class Division : TestInitialize
+     class Multiplication : TestInitialize
     {
-        private Extra I;
+        private Identifiers I;
 
-        public Division(AppiumDriver<IWebElement> driver)
+        public Multiplication(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Extra(driver);
+            I = new Identifiers(driver);
         }
         public void ClearScreen()
         {
@@ -41,138 +41,141 @@ namespace ScientificCalculator.Pages
                 Console.WriteLine("Result screen is already clear.");
             }
         }
-        // Division
-        public void BasicDivision()
+        public void MultiplicationOp()
         {
-            //Expected Result: 100/5 = 20
+            // Expected Result: 20 * 5 = 100
             Assert.IsNotNull(I, "Identifiers instance is not initialized");
-            I.Button1.Click();
-            I.Zero.Click();
-            I.Zero.Click();
-            I.Divide.Click();
+            I.Button2.Click();
+            I.zero.Click();
+            I.Multiply.Click();
             I.Button5.Click();
             I.Equal.Click();
-            var BasicDivResult = I.FinalResult.Text;
-            Assert.AreEqual("20", BasicDivResult, "Result is not as Expected");
+            var BasicMultiplicationResult = I.FinalResult.Text;
+            Assert.AreEqual("100", BasicMultiplicationResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
-        public void DivisionOfZero()
+            //Multiplication of Decimals
+        public void DecimalMultiplication()
         {
-            // Division of Zero 
-            //Expected Result: 8/0 = Syntax Error Or Infinity
-            I.Button8.Click();
-            I.Divide.Click();
-            I.Zero.Click();
-            I.Equal.Click();
-            var DivisionOfZeroResult = I.FinalResult.Text;
-            Assert.AreEqual("Syntax Error Or Infinity", DivisionOfZeroResult, "Result is not as Expected");
-            I.ClearScreen.Click();
-        }
-
-        //Division of Decimals
-        public void DecimalDivision()
-        {
-            //Expected Result: 1.5/2.5 = 0.6
-            I.Button1.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Divide.Click();
+            // Expected Result: 2.5 * 1.5 = 3.75
             I.Button2.Click();
             I.point.Click();
             I.Button5.Click();
+            I.Multiply.Click();
+            I.Button1.Click();
+            I.point.Click();
+            I.Button5.Click();
             I.Equal.Click();
-            var DecimalDivisionResult = I.FinalResult.Text;
-            Assert.AreEqual("0.6", DecimalDivisionResult, "Result is not as Expected");
+            var DecimalMultiplicationResult = I.FinalResult.Text;
+            Assert.AreEqual("3.75", DecimalMultiplicationResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
-        // Positive-Negative Division
-        public void PosNegDivision()
+        // Multiplication of Integer and Decimals
+        public void PosNegMultiplication()
         {
-            //Expected Result: 5/(-3) = -1.66666666667
+            // Expected Result: 5 * (-3) = -15
             I.Button5.Click();
-            I.Divide.Click();
-            I.Leftbracket.Click();
+            I.Multiply.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button3.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
-            var PosNegDivResult = I.FinalResult.Text;
-            Assert.AreEqual("-1.6666666666666667", PosNegDivResult, "Result is not as Expected");
+            var PosNegMultiplicationResult = I.FinalResult.Text;
+            Assert.AreEqual("-15", PosNegMultiplicationResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
-        public void NegativeIntegerDivision()
+        public void MultiplicationOfZero()
         {
-            // Negative Integer Division
-            //Expected Result: (-8)/(-4) = 2
-            I.Leftbracket.Click();
+            // Subtraction of Zero 
+            // Expected Result: 0 * 10 = 0
+            I.zero.Click();
+            I.Multiply.Click();
+            I.Button1.Click();
+            I.zero.Click();
+            I.Equal.Click();
+            var MultiplicationOfZeroResult = I.FinalResult.Text;
+            Assert.AreEqual("0", MultiplicationOfZeroResult, "Result is not as Expected");
+            I.ClearScreen.Click();
+        }
+
+
+        public void NegativeIntegerMultiplication()
+        {
+            //Negative Integer Multiplication
+            // Expected Result: (-8) * (-4) = 32
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button8.Click();
             I.Rightbracket.Click();
-            I.Divide.Click();
-            I.Leftbracket.Click();
+            I.Multiply.Click();
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button4.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
-            var NegativeIntegerDivision = I.FinalResult.Text;
-            Assert.AreEqual("2", NegativeIntegerDivision, "Result is not as Expected");
+            var NegativeIntegerMultiplicationResult = I.FinalResult.Text;
+            Assert.AreEqual("32", NegativeIntegerMultiplicationResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
-        // Division of Negative Decimals
-        public void DivisionOfNegativeDecimals()
+        // Multiplication of Negative Decimals
+        public void MultiplicationOfNegativeDecimals()
         {
-            //Expected Result: (-4.5)/(-2.5) = 1.8
-            I.Leftbracket.Click();
-            I.Minus.Click();
-            I.Button4.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Divide.Click();
-            I.Leftbracket.Click();
+            // Expected Result: (-2.5) * (-1.5) = 3.75
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button2.Click();
             I.point.Click();
             I.Button5.Click();
             I.Rightbracket.Click();
+            I.Multiply.Click();
+            I.LeftBracket.Click();
+            I.Minus.Click();
+            I.Button1.Click();
+            I.point.Click();
+            I.Button5.Click();
+            I.Rightbracket.Click();
             I.Equal.Click();
-            var NegDecDivisionResult = I.FinalResult.Text;
-            Assert.AreEqual("1.8", NegDecDivisionResult, "Result is not as Expected");
+            var MultiplyNegativeDecimalsResult = I.FinalResult.Text;
+            Assert.AreEqual("3.75", MultiplyNegativeDecimalsResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
 
-        public void NegPosDecDivision()
+        public void NegPosDecMultiplication()
         {
-            //Division of Negative positive Decimals
-            // Expected Result: (-7) / 3.5 = -2
-            I.Leftbracket.Click();
+            //Multiplication of Negative positive Decimals
+            // Expected Result: (-7) * 3.5 = -24.5
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button7.Click();
             I.Rightbracket.Click();
-            I.Divide.Click();
+            I.Multiply.Click();
             I.Button3.Click();
             I.point.Click();
             I.Button5.Click();
             I.Equal.Click();
-            var NegPosDecDivisionResult = I.FinalResult.Text;
-            Assert.AreEqual("-2", NegPosDecDivisionResult, "Result is not as Expected");
+            var NegPosDecMultiplicationResult = I.FinalResult.Text;
+            Assert.AreEqual("-24.5", NegPosDecMultiplicationResult, "Result is not as Expected");
             I.ClearScreen.Click();
         }
 
+
+
+        [TestMethod]
         public void ErrorHandling()
         {
             // Error Handling
-            // Expected Result: (-7) / 3.5) = Syntax Error Or Infinity
-            I.Leftbracket.Click();
+            // Expected Result: (-7) * 3.5) = Syntax Error Or Infinity
+            I.LeftBracket.Click();
             I.Minus.Click();
             I.Button7.Click();
             I.Rightbracket.Click();
-            I.Divide.Click();
+            I.Multiply.Click();
             I.Button3.Click();
             I.point.Click();
             I.Button5.Click();
@@ -183,10 +186,10 @@ namespace ScientificCalculator.Pages
             I.ClearScreen.Click();
         }
 
-        public void LargeNumbersDiv()
+        public void LargeNumbersMultiplication()
         {
             // Scenario: Handling of large numbers
-            // Expected Result: 999999999 / 888888888 = 1.125
+            // Expected Result: 999999999 - 888888888 = 111111111
             I.Button9.Click();
             I.Button9.Click();
             I.Button9.Click();
@@ -196,7 +199,7 @@ namespace ScientificCalculator.Pages
             I.Button9.Click();
             I.Button9.Click();
             I.Button9.Click();
-            I.Divide.Click();
+            I.Multiply.Click();
             I.Button8.Click();
             I.Button8.Click();
             I.Button8.Click();
@@ -207,8 +210,8 @@ namespace ScientificCalculator.Pages
             I.Button8.Click();
             I.Button9.Click();
             I.Equal.Click();
-            var largeNumberDivisionResult = I.FinalResult.Text;
-            Assert.AreEqual("1.125", largeNumberDivisionResult, "Result is not as Expected");
+            var largeNumberMulResult = I.FinalResult.Text;
+            //Assert.AreEqual("111111111", largeNumberMulResult, "Result is not as Expected");
             I.ClearScreen.Click();
 
         }

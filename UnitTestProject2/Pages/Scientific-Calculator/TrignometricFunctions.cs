@@ -15,12 +15,12 @@ namespace ScientificCalculator.Pages
 {
      class TrignometricFunctions : TestInitialize
     {
-        private Extra I;
+        private Identifiers I;
 
         public TrignometricFunctions(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Extra(driver);
+            I = new Identifiers(driver);
         }
 
         public void ClearScreen()
@@ -50,7 +50,7 @@ namespace ScientificCalculator.Pages
             // Test Data: sin(30) = 0.5
             I.Sin.Click();
             I.Button3.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
 
@@ -64,7 +64,7 @@ namespace ScientificCalculator.Pages
             // Test Data: sin(60) = 0.8660254037844386
             I.Sin.Click();
             I.Button6.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
 
@@ -79,7 +79,7 @@ namespace ScientificCalculator.Pages
 
             I.Cos.Click();
             I.Button3.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
             var cosResult = I.FinalResult.Text;
@@ -108,7 +108,7 @@ namespace ScientificCalculator.Pages
             I.Tan.Click();
             I.Button1.Click();
             I.Button2.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
 
@@ -122,7 +122,7 @@ namespace ScientificCalculator.Pages
             // Tan
             I.Tan.Click();
             I.Button9.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
 

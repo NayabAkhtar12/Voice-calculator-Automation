@@ -15,12 +15,12 @@ namespace ScientificCalculator.Pages
 {
      class LogarithmicFunctions : TestInitialize
     {
-        private Extra I;
+        private Identifiers I;
 
         public LogarithmicFunctions(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Extra(driver);
+            I = new Identifiers(driver);
         }
 
         public void ClearScreen()
@@ -49,7 +49,7 @@ namespace ScientificCalculator.Pages
             // Test Data: log(10) = 1
             I.Log.Click();
             I.Button1.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.Rightbracket.Click();
             I.Equal.Click();
 
@@ -77,7 +77,7 @@ namespace ScientificCalculator.Pages
             // Test Data: log(10.5) = 1.02118929907
             I.Log.Click();
             I.Button1.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.point.Click();
             I.Button5.Click();
             I.Rightbracket.Click();
@@ -94,7 +94,7 @@ namespace ScientificCalculator.Pages
             I.Log.Click();
             I.Minus.Click();
             I.Button2.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.point.Click();
             I.Button5.Click();
             I.Rightbracket.Click();
@@ -136,7 +136,7 @@ namespace ScientificCalculator.Pages
             // Test Data: ln(10.5) = 2.35137..
             I.Ln.Click();
             I.Button1.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.point.Click();
             I.Button5.Click();
             I.Rightbracket.Click();
@@ -153,7 +153,7 @@ namespace ScientificCalculator.Pages
             I.Ln.Click();
             I.Minus.Click();
             I.Button2.Click();
-            I.Zero.Click();
+            I.zero.Click();
             I.point.Click();
             I.Button5.Click();
             I.Rightbracket.Click();
