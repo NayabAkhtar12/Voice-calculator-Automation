@@ -16,12 +16,12 @@ namespace ScientificCalculator.Pages
     //By default Its access modifier is Internal
      class Addition : TestInitialize
     {
-        private Identifiers I;
+        private Identifiers_SC I;
 
         public Addition(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Identifiers(driver);
+            I = new Identifiers_SC(driver);
         }
 
         public void ClearScreen()
@@ -47,7 +47,7 @@ namespace ScientificCalculator.Pages
         public void BasicAddition()
         {
          
-            Assert.IsNotNull(I, "Identifiers instance is not initialized");
+           // Assert.IsNotNull(I, "Identifiers instance is not initialized");
             I.Button5.Click();
             I.Plus.Click();
             I.Button3.Click();

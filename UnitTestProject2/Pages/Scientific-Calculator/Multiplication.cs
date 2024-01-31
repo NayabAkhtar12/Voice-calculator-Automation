@@ -15,12 +15,12 @@ namespace ScientificCalculator.Pages
 {
      class Multiplication : TestInitialize
     {
-        private Identifiers I;
+        private Identifiers_SC I;
 
         public Multiplication(AppiumDriver<IWebElement> driver)
         {
             // Initialize I1 in the constructor
-            I = new Identifiers(driver);
+            I = new Identifiers_SC(driver);
         }
         public void ClearScreen()
         {

@@ -72,7 +72,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Identifiers\Identifiers.cs" />
+    <Compile Include="Pages\Identifiers\EMI_Identifiers.cs" />
+    <Compile Include="Pages\Identifiers\Identifiers_SC.cs" />
+    <Compile Include="Pages\Scientific-Calculator\Addition.cs" />
     <Compile Include="Pages\Scientific-Calculator\OtherFunctions.cs" />
     <Compile Include="Pages\Scientific-Calculator\TrignometricFunctions.cs" />
     <Compile Include="Pages\Scientific-Calculator\LogarithmicFunctions.cs" />
@@ -80,7 +82,7 @@
     <Compile Include="Pages\Scientific-Calculator\Division.cs" />
     <Compile Include="Pages\Scientific-Calculator\Multiplication.cs" />
     <Compile Include="Pages\Scientific-Calculator\Subtraction.cs" />
-    <Compile Include="Pages\Scientific-Calculator\Addition.cs" />
+    <Compile Include="Pages\EMI_Calculator\EMI.cs" />
     <Compile Include="Test-Class\TestClass.cs" />
     <Compile Include="Core\TestInitialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,9 +90,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\EMI_Calculator\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

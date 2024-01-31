@@ -15,8 +15,12 @@ namespace ScientificCalculator.Pages
 {
      class OtherFunctions : TestInitialize
     {
-        private Identifiers I;
-
+        private Identifiers_SC I;
+        public OtherFunctions(AppiumDriver<IWebElement> driver)
+        {
+            // Initialize I1 in the constructor
+            I = new Identifiers_SC(driver);
+        }
         public void ClearScreen()
         {
             if (!string.IsNullOrEmpty(I.FinalResult.Text))
@@ -36,11 +40,7 @@ namespace ScientificCalculator.Pages
                 Console.WriteLine("Result screen is already clear.");
             }
         }
-        public OtherFunctions(AppiumDriver<IWebElement> driver)
-        {
-            // Initialize I1 in the constructor
-            I = new Identifiers(driver);
-        }
+     
 
         // Assert.IsNotNull(I, "Identifiers instance is not initialized");
         public void ConstantPi()

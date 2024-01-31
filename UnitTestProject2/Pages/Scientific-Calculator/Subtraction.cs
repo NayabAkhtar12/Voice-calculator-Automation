@@ -16,8 +16,12 @@ namespace ScientificCalculator.Pages
 {
      class Subtraction : TestInitialize
     {
-        private Identifiers I;
-
+        private Identifiers_SC I;
+        public Subtraction(AppiumDriver<IWebElement> driver)
+        {
+            // Initialize I1 in the constructor
+            I = new Identifiers_SC(driver);
+        }
         public void ClearScreen()
         {
             if (!string.IsNullOrEmpty(I.FinalResult.Text))
@@ -37,11 +41,7 @@ namespace ScientificCalculator.Pages
                 Console.WriteLine("Result screen is already clear.");
             }
         }
-        public Subtraction(AppiumDriver<IWebElement> driver)
-        {
-            // Initialize I1 in the constructor
-            I = new Identifiers(driver);
-        }
+      
 
         //Methods for Identifiers like click
         public void BasicSubtration()

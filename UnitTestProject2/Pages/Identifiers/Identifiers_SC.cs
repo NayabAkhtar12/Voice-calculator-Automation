@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace ScientificCalculator.Pages
 {
-    public class Identifiers
+    public class Identifiers_SC
     {
         private AppiumDriver<IWebElement> driver;
 
-        public Identifiers(AppiumDriver<IWebElement> driver)
+        public Identifiers_SC(AppiumDriver<IWebElement> driver)
         {
             this.driver = driver;
         }
