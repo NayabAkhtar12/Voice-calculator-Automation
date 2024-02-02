@@ -83,7 +83,8 @@
     <Compile Include="Pages\Scientific-Calculator\Multiplication.cs" />
     <Compile Include="Pages\Scientific-Calculator\Subtraction.cs" />
     <Compile Include="Pages\EMI_Calculator\EMI.cs" />
-    <Compile Include="Test-Class\TestClass.cs" />
+    <Compile Include="Test-Class\TestClass_EMI.cs" />
+    <Compile Include="Test-Class\TestClass_SC.cs" />
     <Compile Include="Core\TestInitialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

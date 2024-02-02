@@ -4,11 +4,7 @@ using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Chrome;
+
 
 namespace ScientificCalculator.Core
 {
@@ -16,6 +12,12 @@ namespace ScientificCalculator.Core
     {
 
         public AppiumDriver<IWebElement> driver;
+
+        //public TestInitialize(AppiumDriver<IWebElement> driver)
+        //{
+        //    this.driver = driver;
+        //}
+
         [TestInitialize]
         public void Setup()
         {

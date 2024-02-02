@@ -1,18 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Enums;
 using ScientificCalculator.Core;
 using ScientificCalculator.Pages;
-using System;
-using System.Security.Cryptography;
 
 namespace ScientificCalculator.Test_Class
 
 {
     [TestClass]
-     public class TestClass : TestInitialize
+     public class TestClass_SC : TestInitialize
     {
         Addition Add;
         Subtraction Sub;
@@ -22,11 +16,17 @@ namespace ScientificCalculator.Test_Class
         LogarithmicFunctions LF;
         TrignometricFunctions TF;
         OtherFunctions OF;
+        EMI e;
 
-            //Operations of Scientific Calculator
-            //Addition
+        [TestMethod, Priority(1)]
+        public void test()
+        {
+            e.EMIWithValidValues();
+        }
+        //Operations of Scientific Calculator
+        //Addition
 
-             [TestMethod, Priority(1)]
+        [TestMethod, Priority(1)]
             public void Addition()
         {
             Add = new Addition(driver);
