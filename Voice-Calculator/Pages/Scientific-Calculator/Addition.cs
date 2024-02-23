@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using ScientificCalculator.Core;
 using System;
 
 namespace ScientificCalculator.Pages
@@ -9,7 +8,6 @@ namespace ScientificCalculator.Pages
     // By default Its access modifier is Internal
     class Addition : Identifiers_SC
     {
-        private Identifiers_SC I;
         private AppiumDriver<IWebElement> driver;
 
         public Addition(AppiumDriver<IWebElement> driver) : base(driver)
@@ -25,15 +23,11 @@ namespace ScientificCalculator.Pages
                 // If not clear, perform the clear operation
                 GetClearScreen().Click();
 
-                // You can add an assertion or print a message to verify the clear operation
                 Assert.IsTrue(string.IsNullOrEmpty(GetFinalResult().Text), "Result screen is not cleared after clicking ClearScreen.");
-
-                // Or print a message
                 Console.WriteLine("Result screen has been cleared.");
             }
             else
             {
-                // The result screen is already clear
                 Console.WriteLine("Result screen is already clear.");
             }
         }
@@ -42,7 +36,6 @@ namespace ScientificCalculator.Pages
             // Method for basic addition
             public void BasicAddition()
         {
-            // Assert.IsNotNull(I, "Identifiers instance is not initialized");
             GetButton5().Click();
             GetPlus().Click();
             GetButton3().Click();

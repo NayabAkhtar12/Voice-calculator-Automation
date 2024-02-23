@@ -19,18 +19,13 @@ namespace ScientificCalculator.Pages
         {
             if (!string.IsNullOrEmpty(GetFinalResult().Text))
             {
-                // If not clear, perform the clear operation
                 GetClearScreen().Click();
 
-                // You can add an assertion or print a message to verify the clear operation
                 Assert.IsTrue(string.IsNullOrEmpty(GetFinalResult().Text), "Result screen is not cleared after clicking ClearScreen.");
-
-                // Or print a message
                 Console.WriteLine("Result screen has been cleared.");
             }
             else
             {
-                // The result screen is already clear
                 Console.WriteLine("Result screen is already clear.");
             }
         }

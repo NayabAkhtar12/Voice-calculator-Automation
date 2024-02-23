@@ -15,18 +15,13 @@ namespace ScientificCalculator.Pages
         {
             if (!string.IsNullOrEmpty(GetFinalResult().Text))
             {
-                // If not clear, perform the clear operation
                 GetClearScreen().Click();
 
-                // You can add an assertion or print a message to verify the clear operation
                 Assert.IsTrue(string.IsNullOrEmpty(GetFinalResult().Text), "Result screen is not cleared after clicking ClearScreen.");
-
-                // Or print a message
                 Console.WriteLine("Result screen has been cleared.");
             }
             else
             {
-                // The result screen is already clear
                 Console.WriteLine("Result screen is already clear.");
             }
         }
@@ -42,7 +37,7 @@ namespace ScientificCalculator.Pages
             GetEqual().Click();
 
             var sin30Result = GetFinalResult().Text;
-            //     Assert.AreEqual("0.5", sin30Result, "Result is not as Expected");
+               Assert.AreEqual("0.5", sin30Result, "Result is not as Expected");
             GetClearScreen().Click();
         }
 
@@ -56,7 +51,7 @@ namespace ScientificCalculator.Pages
             GetEqual().Click();
 
             var sin60Result = GetFinalResult().Text;
-            //            Assert.AreEqual("0.8660254037844386", sin60Result, "Result is not as Expected");
+                 Assert.AreEqual("0.8660254037844386", sin60Result, "Result is not as Expected");
             GetClearScreen().Click();
         }
         public void Cos()
