@@ -1,71 +1,76 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using ScientificCalculator.Core;
-using ScientificCalculator.Pages.Identifiers;
-
 
 namespace ScientificCalculator.Pages
 {
-    //By default Its access modifier is Internal
-     class EMI : TestInitialize
+    // By default, its access modifier is internal
+    class EMI
     {
-        private EMI_Identifiers I;
+        private AppiumDriver<IWebElement> driver;
 
-        public EMI(AppiumDriver<IWebElement> driver) 
+        public EMI(AppiumDriver<IWebElement> driver)
         {
-            // Initialize I in the constructor
-            I = new EMI_Identifiers(driver);
+            this.driver = driver;
         }
 
- 
-         //Methods
+        // Identifiers
+        private IWebElement LoanAmount => driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/loan_amount"));
+        private IWebElement Interest => driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/loan_interest"));
+        private IWebElement LoanTenure => driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/loan_tenure"));
+        private IWebElement Calculate => driver.FindElement(By.XPath("//android.widget.TextView[@text=\"Calculate\"]"));
+        private IWebElement Clear => driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/btnClear"));
+        private IWebElement TotalPayment => driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/totalAmountTv"));
+        private IWebElement MonthlyEMI => driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/emi"));
+        private IWebElement TotalInterest => driver.FindElement(By.Id("com.voice.calculator.qr.scanner.scientificcalculator.qrcode.barcode.reader:id/totalIntrestTv"));
+
+        // Methods
         public void EMIWithValidValues()
         {
-            //Expected Result
-            //Amount: ₹10,000           Monthly Emi= 856
-            //Interest: 5 %             Total Interest = 273
-            //Period: 12 months         Total Payment: 10,273
+            // Expected Result
+            // Amount: ₹10,000           Monthly Emi= 856
+            // Interest: 5 %             Total Interest = 273
+            // Period: 12 months         Total Payment: 10,273
 
-            I.LoanAmount.Click();
-            I.LoanAmount.SendKeys("10000 ");
-            I.Interest.SendKeys("5");
-            I.LoanTenure.SendKeys("12");
-            I.Calculate.Click();
+            LoanAmount.Click();
+            LoanAmount.SendKeys("10000 ");
+            Interest.SendKeys("5");
+            LoanTenure.SendKeys("12");
+            Calculate.Click();
 
-            var MonthlyEMI = I.MonthlyEMI.Text;
-            Assert.AreEqual("856.07", MonthlyEMI, "Incorrect Monthly EMI");
+            var MonthlyEMIValue = MonthlyEMI.Text;
+            Assert.AreEqual("856.07", MonthlyEMIValue, "Incorrect Monthly EMI");
 
-            var TotalInterest = I.TotalInterest.Text;
-            Assert.AreEqual("272.9", TotalInterest, "Incorrect Total Interest");
+            var TotalInterestValue = TotalInterest.Text;
+            Assert.AreEqual("272.9", TotalInterestValue, "Incorrect Total Interest");
 
-            var TotalPayment = I.TotalPayment.Text;
-            Assert.AreEqual("10272.9", TotalPayment, "Incorrect Total Payment");
+            var TotalPaymentValue = TotalPayment.Text;
+            Assert.AreEqual("10272.9", TotalPaymentValue, "Incorrect Total Payment");
         }
+
         public void EMIWithLargeValues()
         {
-            //Expected Result
-            //Amount: ₹1,000,000         Monthly Emi= 13215
-            //Interest: 10 %             Total Interest = 5,85,809
-            //Period: 120 months         Total Payment: 15,85,809
+            // Expected Result
+            // Amount: ₹1,000,000         Monthly Emi= 13215
+            // Interest: 10 %             Total Interest = 5,85,809
+            // Period: 120 months         Total Payment: 15,85,809
 
-            I.Clear.Click();
-            I.LoanAmount.SendKeys("1000000 ");
-            I.Interest.SendKeys("10");
-            I.LoanTenure.SendKeys("120");
-            I.Calculate.Click();
+            Clear.Click();
+            LoanAmount.SendKeys("1000000 ");
+            Interest.SendKeys("10");
+            LoanTenure.SendKeys("120");
+            Calculate.Click();
 
-            var MonthlyEMI = I.MonthlyEMI.Text;
-            Assert.AreEqual("13215.07", MonthlyEMI, "Incorrect Monthly EMI");
+            var MonthlyEMIValue = MonthlyEMI.Text;
+            Assert.AreEqual("13215.07", MonthlyEMIValue, "Incorrect Monthly EMI");
 
-            var TotalInterest = I.TotalInterest.Text;
-            Assert.AreEqual("585808.84", TotalInterest, "Incorrect Total Interest ");
+            var TotalInterestValue = TotalInterest.Text;
+            Assert.AreEqual("585808.84", TotalInterestValue, "Incorrect Total Interest ");
 
-            var TotalPayment = I.TotalPayment.Text;
-            Assert.AreEqual("1585808.84", TotalPayment, "Incorrect Total Payment");
-
-
+            var TotalPaymentValue = TotalPayment.Text;
+            Assert.AreEqual("1585808.84", TotalPaymentValue, "Incorrect Total Payment");
         }
+
         public void EMIWithNullValues()
         {
             //Expected Result
@@ -73,21 +78,21 @@ namespace ScientificCalculator.Pages
             //Interest: 0 %            Error
             //Period: 0 months         Error
 
-            I.Clear.Click();
-            I.LoanAmount.SendKeys("0 ");
-            I.Interest.SendKeys("0");
-            I.LoanTenure.SendKeys("0");
-            I.Calculate.Click();
-            var MonthlyEMI = I.MonthlyEMI.Text;
-            Assert.AreEqual("Error", MonthlyEMI, "Incorrect Monthly EMI");
+            Clear.Click();
+            LoanAmount.SendKeys("0 ");
+            Interest.SendKeys("0");
+            LoanTenure.SendKeys("0");
+            Calculate.Click();
+            var MonthlyEMI1 = MonthlyEMI.Text;
+            Assert.AreEqual("Error", MonthlyEMI1, "Incorrect Monthly EMI");
 
-            var TotalInterest = I.TotalInterest.Text;
-            Assert.AreEqual("Error", TotalInterest, "Incorrect Total Interest ");
+            var TotalInterest1 = TotalInterest.Text;
+            Assert.AreEqual("Error", TotalInterest1, "Incorrect Total Interest ");
 
-            var TotalPayment = I.TotalPayment.Text;
-            Assert.AreEqual("Error", TotalPayment, "Incorrect Total Payment");
+            var TotalPayment1 = TotalPayment.Text;
+            Assert.AreEqual("Error", TotalPayment1, "Incorrect Total Payment");
 
-            I.Clear.Click();
+            Clear.Click();
         }
 
         public void EMIWithMinimumValues()
@@ -97,21 +102,21 @@ namespace ScientificCalculator.Pages
             //Interest: 0.1 %             Total Interst = 0
             //Period: 1 month             Total Payment =1
 
-            I.Clear.Click();
-            I.LoanAmount.SendKeys("1");
-            I.Interest.SendKeys("0.1");
-            I.LoanTenure.SendKeys("1");
-            I.Calculate.Click();
-            var MonthlyEMI = I.MonthlyEMI.Text;
-            Assert.AreEqual("Error", MonthlyEMI, "Incorrect Monthly EMI");
+            Clear.Click();
+            LoanAmount.SendKeys("1");
+            Interest.SendKeys("0.1");
+            LoanTenure.SendKeys("1");
+            Calculate.Click();
+            var MonthlyEMI1 = MonthlyEMI.Text;
+            Assert.AreEqual("Error", MonthlyEMI1, "Incorrect Monthly EMI");
 
-            var TotalInterest = I.TotalInterest.Text;
-            Assert.AreEqual("Error", TotalInterest, "Incorrect Total Interest ");
+            var TotalInterest1 = TotalInterest.Text;
+            Assert.AreEqual("Error", TotalInterest1, "Incorrect Total Interest ");
 
-            var TotalPayment = I.TotalPayment.Text;
-            Assert.AreEqual("Error", TotalPayment, "Incorrect Total Payment");
+            var TotalPayment1 = TotalPayment.Text;
+            Assert.AreEqual("Error", TotalPayment1, "Incorrect Total Payment");
 
-            I.Clear.Click();
+            Clear.Click();
         }
         public void EMIWithInvalidPeriod()
         {
@@ -120,18 +125,17 @@ namespace ScientificCalculator.Pages
             //Interest: 7 %
             //Period: 0 months
             //Calculate = ErrorContext on Period Field
-            I.Clear.Click();
-            I.LoanAmount.SendKeys("15000");
-            I.Interest.SendKeys("7");
-            I.LoanTenure.SendKeys("0");
-            I.Calculate.Click();
-         
-            var TotalPayment = I.TotalPayment.Text;
-            Assert.AreEqual("Error", TotalPayment, "Incorrect Total Payment");
+            Clear.Click();
+            LoanAmount.SendKeys("15000");
+            Interest.SendKeys("7");
+            LoanTenure.SendKeys("0");
+            Calculate.Click();
 
-            I.Clear.Click();
+            var TotalPayment1 = TotalPayment.Text;
+            Assert.AreEqual("Error", TotalPayment1, "Incorrect Total Payment");
+
+            Clear.Click();
 
         }
-
     }
 }

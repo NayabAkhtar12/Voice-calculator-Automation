@@ -4,29 +4,29 @@ using OpenQA.Selenium.Appium;
 using ScientificCalculator.Core;
 using System;
 
-
 namespace ScientificCalculator.Pages
 {
-    //By default Its access modifier is Internal
-     class Addition : TestInitialize
+    // By default Its access modifier is Internal
+    class Addition : Identifiers_SC
     {
         private Identifiers_SC I;
+        private AppiumDriver<IWebElement> driver;
 
-        public Addition(AppiumDriver<IWebElement> driver)
+        public Addition(AppiumDriver<IWebElement> driver) : base(driver)
         {
-            // Initialize I1 in the constructor
-            I = new Identifiers_SC(driver);
+
         }
 
+        // Methods for performing addition operations
         public void ClearScreen()
         {
-            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            if (!string.IsNullOrEmpty(GetFinalResult().Text))
             {
                 // If not clear, perform the clear operation
-                I.ClearScreen.Click();
+                GetClearScreen().Click();
 
                 // You can add an assertion or print a message to verify the clear operation
-                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+                Assert.IsTrue(string.IsNullOrEmpty(GetFinalResult().Text), "Result screen is not cleared after clicking ClearScreen.");
 
                 // Or print a message
                 Console.WriteLine("Result screen has been cleared.");
@@ -37,191 +37,195 @@ namespace ScientificCalculator.Pages
                 Console.WriteLine("Result screen is already clear.");
             }
         }
-        //Methods for Identifiers like click
-        public void BasicAddition()
+
+
+            // Method for basic addition
+            public void BasicAddition()
         {
-         
-           // Assert.IsNotNull(I, "Identifiers instance is not initialized");
-            I.Button5.Click();
-            I.Plus.Click();
-            I.Button3.Click();
-            I.Equal.Click();
-            var AdditionResult = I.FinalResult.Text;
+            // Assert.IsNotNull(I, "Identifiers instance is not initialized");
+            GetButton5().Click();
+            GetPlus().Click();
+            GetButton3().Click();
+            GetEqual().Click();
+            var AdditionResult = GetFinalResult().Text;
             Assert.AreEqual("8", AdditionResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
-        // Addition of Decimals
+        // Method for decimal addition
         public void DecimalAddition()
         {
             // Test Data: 2.5 + 1.5 = 4
-            I.Button2.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Plus.Click();
-            I.Button1.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Equal.Click();
-            var DecimalAdditionResult = I.FinalResult.Text;
+            GetButton2().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetPlus().Click();
+            GetButton1().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetEqual().Click();
+            var DecimalAdditionResult = GetFinalResult().Text;
             Assert.AreEqual("4", DecimalAdditionResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
-        // Addition of Integer and Decimals
+        // Method for adding integer and decimals
         public void DecimalIntegerAdd()
         {
             // Expected Result: 8 + 4.2 = 12.2
-            I.Button8.Click();
-            I.Plus.Click();
-            I.Button4.Click();
-            I.point.Click();
-            I.Button2.Click();
-            I.Equal.Click();
-            var DecimalIntegerAdd = I.FinalResult.Text;
+            GetButton8().Click();
+            GetPlus().Click();
+            GetButton4().Click();
+            GetPoint().Click();
+            GetButton2().Click();
+            GetEqual().Click();
+            var DecimalIntegerAdd = GetFinalResult().Text;
             Assert.AreEqual("12.2", DecimalIntegerAdd, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
+        // Method for adding zero
         public void ZeroAddition()
         {
             // Addition of Zero
             // Expected Result: 0 + 10 = 10
-            I.zero.Click();
-            I.Plus.Click();
-            I.Button1.Click();
-            I.zero.Click();
-            I.Equal.Click();
-            var ZeroAdditionResult = I.FinalResult.Text;
+            GetZero().Click();
+            GetPlus().Click();
+            GetButton1().Click();
+            GetZero().Click();
+            GetEqual().Click();
+            var ZeroAdditionResult = GetFinalResult().Text;
             Assert.AreEqual("10", ZeroAdditionResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
-        // Positive-Negative Addition
+        // Method for positive-negative addition
         public void PositiveNegativeAddition()
         {
             // Expected Result: 5 + (-3) = 2
-            I.Button5.Click();
-            I.Plus.Click();
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button3.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var PositiveNegativeAdditionResult = I.FinalResult.Text;
+            GetButton5().Click();
+            GetPlus().Click();
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton3().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var PositiveNegativeAdditionResult = GetFinalResult().Text;
             Assert.AreEqual("2", PositiveNegativeAdditionResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
+        // Method for negative integer addition
         public void NegativeIntegerAddition()
         {
             // Negative Integer Addition
             // Expected Result: (-4) + (-2) = -6
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button4.Click();
-            I.Rightbracket.Click();
-            I.Plus.Click();
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button2.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var NegativeIntegerAddition = I.FinalResult.Text;
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton4().Click();
+            GetRightBracket().Click();
+            GetPlus().Click();
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton2().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var NegativeIntegerAddition = GetFinalResult().Text;
             Assert.AreEqual("-6", NegativeIntegerAddition, "Result is not as Expected");
-            I.ClearScreen.Click();
-        }
-        public void AdditionOfNegativeDecimals()
-        {
-            // Addition of Negative Decimals
-            // Expected Result: (-2.5) + (-1.5) = -4
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button2.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Plus.Click();
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button1.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var NegativeIntegerAddition = I.FinalResult.Text;
-            Assert.AreEqual("-4", NegativeIntegerAddition, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
-        // Addition of Negative positive Decimals
+        // Method for addition of negative decimals
+        public void AdditionOfNegativeDecimals()
+        {
+            // Expected Result: (-2.5) + (-1.5) = -4
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton2().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetPlus().Click();
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton1().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var NegativeIntegerAddition = GetFinalResult().Text;
+            Assert.AreEqual("-4", NegativeIntegerAddition, "Result is not as Expected");
+            GetClearScreen().Click();
+        }
+
+        // Method for addition of negative and positive decimals
         public void AdditionOfNegativePositiveDecimals()
         {
             // Expected Result: (-7) + 3.5 = -3.5
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button7.Click();
-            I.Rightbracket.Click();
-            I.Plus.Click();
-            I.Button3.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Equal.Click();
-            var AdditionOfNegativePositiveDecimals = I.FinalResult.Text;
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton7().Click();
+            GetRightBracket().Click();
+            GetPlus().Click();
+            GetButton3().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetEqual().Click();
+            var AdditionOfNegativePositiveDecimals = GetFinalResult().Text;
             Assert.AreEqual("-3.5", AdditionOfNegativePositiveDecimals, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
+        // Method for error handling
         public void ErrorHandling()
         {
             // Error Handling
             // Expected Result: (-7) + 3.5) = Syntax Error Or Infinity
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button7.Click();
-            I.Rightbracket.Click();
-            I.Plus.Click();
-            I.Button3.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var ErrorHandlingResult = I.FinalResult.Text;
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton7().Click();
+            GetRightBracket().Click();
+            GetPlus().Click();
+            GetButton3().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var ErrorHandlingResult = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", ErrorHandlingResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
+        // Method for handling large numbers addition
         public void LargeNumbersAddition()
         {
             // Scenario: Handling of large numbers
             // Expected Result: 999999999 + 9999999999 = 10999999998
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Plus.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Equal.Click();
-            var LargeNumbersAddition = I.FinalResult.Text;
-              Assert.AreEqual("10999999998", LargeNumbersAddition, "Result is not as Expected");
-            I.ClearScreen.Click();
-
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetPlus().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetEqual().Click();
+            var LargeNumbersAddition = GetFinalResult().Text;
+            Assert.AreEqual("10999999998", LargeNumbersAddition, "Result is not as Expected");
+            GetClearScreen().Click();
         }
-
-
     }
-    }
+}

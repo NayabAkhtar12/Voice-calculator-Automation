@@ -1,30 +1,26 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using ScientificCalculator.Core;
 using System;
 
 namespace ScientificCalculator.Pages
 {
-     class LogarithmicFunctions : TestInitialize
+    class LogarithmicFunctions : Identifiers_SC
     {
-        private Identifiers_SC I;
-
-        public LogarithmicFunctions(AppiumDriver<IWebElement> driver)
+        public LogarithmicFunctions(AppiumDriver<IWebElement> driver) : base(driver)
         {
-            // Initialize I1 in the constructor
-            I = new Identifiers_SC(driver);
+            // No need to initialize 'I' separately
         }
 
         public void ClearScreen()
         {
-            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            if (!string.IsNullOrEmpty(GetFinalResult().Text))
             {
                 // If not clear, perform the clear operation
-                I.ClearScreen.Click();
+                GetClearScreen().Click();
 
                 // You can add an assertion or print a message to verify the clear operation
-                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+                Assert.IsTrue(string.IsNullOrEmpty(GetFinalResult().Text), "Result screen is not cleared after clicking ClearScreen.");
 
                 // Or print a message
                 Console.WriteLine("Result screen has been cleared.");
@@ -37,126 +33,124 @@ namespace ScientificCalculator.Pages
         }
         public void CommonLog()
         {
-           Assert.IsNotNull(I, "Identifiers instance is not initialized");
+          //  Assert.IsNotNull(I, "Identifiers instance is not initialized");
 
             // Test Data: log(10) = 1
-            I.Log.Click();
-            I.Button1.Click();
-            I.zero.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLog().Click();
+            GetButton1().Click();
+            GetZero().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var commonLogResult = I.FinalResult.Text;
+            var commonLogResult = GetFinalResult().Text;
             Assert.AreEqual("1", commonLogResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void CommonLogNeg()
         {
             // Test Data: log(-8) = Error
-            I.Log.Click();
-            I.Minus.Click();
-            I.Button8.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLog().Click();
+            GetMinus().Click();
+            GetButton8().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var commonLogNegResult = I.FinalResult.Text;
+            var commonLogNegResult = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", commonLogNegResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void CommonLogPos()
         {
             // Test Data: log(10.5) = 1.02118929907
-            I.Log.Click();
-            I.Button1.Click();
-            I.zero.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLog().Click();
+            GetButton1().Click();
+            GetZero().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var commonLogPosValue = I.FinalResult.Text;
+            var commonLogPosValue = GetFinalResult().Text;
             Assert.AreEqual("1.021189299069938", commonLogPosValue, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void CommonLogDecimal()
         {
             // Test Data: log(-20.5) = error
-            I.Log.Click();
-            I.Minus.Click();
-            I.Button2.Click();
-            I.zero.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLog().Click();
+            GetMinus().Click();
+            GetButton2().Click();
+            GetZero().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var commonLogDecimalValue = I.FinalResult.Text;
+            var commonLogDecimalValue = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", commonLogDecimalValue, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void NaturalLogarithm()
         {
             // Test Data: ln(8) = 2.079
-            I.Ln.Click();
-            I.Button8.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLn().Click();
+            GetButton8().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var naturalLogarithmResult = I.FinalResult.Text;
+            var naturalLogarithmResult = GetFinalResult().Text;
             Assert.AreEqual("2.0794415416798357", naturalLogarithmResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void NaturalLogarithmNegative()
         {
             // Test Data: ln(-8) = Error
-            I.Ln.Click();
-            I.Minus.Click();
-            I.Button8.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLn().Click();
+            GetMinus().Click();
+            GetButton8().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var NaturalLogarithmNeg = I.FinalResult.Text;
+            var NaturalLogarithmNeg = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", NaturalLogarithmNeg, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
         public void NaturalLogarithmPositiveDecimal()
         {
             // Test Data: ln(10.5) = 2.35137..
-            I.Ln.Click();
-            I.Button1.Click();
-            I.zero.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLn().Click();
+            GetButton1().Click();
+            GetZero().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var NaturalLogPosResult = I.FinalResult.Text;
+            var NaturalLogPosResult = GetFinalResult().Text;
             Assert.AreEqual("2.3513752571634776", NaturalLogPosResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void NaturalLogarithmNegativeDecimal()
         {
             // Test Data: ln(-20.5) = error
-            I.Ln.Click();
-            I.Minus.Click();
-            I.Button2.Click();
-            I.zero.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
+            GetLn().Click();
+            GetMinus().Click();
+            GetButton2().Click();
+            GetZero().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
 
-            var NaturalLogNegDecResult = I.FinalResult.Text;
+            var NaturalLogNegDecResult = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", NaturalLogNegDecResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
-
-
     }
 }

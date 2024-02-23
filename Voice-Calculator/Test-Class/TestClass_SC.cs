@@ -1,13 +1,32 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium;
 using ScientificCalculator.Core;
 using ScientificCalculator.Pages;
 
 namespace ScientificCalculator.Test_Class
 
 {
+
     [TestClass]
-     public class TestClass_SC : TestInitialize
+    public class TestClass_SC 
     {
+        private AppiumDriver<IWebElement> driver;
+        private TestInitialize testInitialize;
+
+        public TestClass_SC()
+        {
+            // Initialize TestInitialize class
+            testInitialize = new TestInitialize();
+
+            // Call the Setup method from TestInitialize
+            testInitialize.Setup();
+
+            // Assign the driver instance
+            driver = testInitialize.GetDriver();
+        }
+
+
         Addition Add;
         Subtraction Sub;
         Multiplication Mul;
@@ -16,18 +35,11 @@ namespace ScientificCalculator.Test_Class
         LogarithmicFunctions LF;
         TrignometricFunctions TF;
         OtherFunctions OF;
-        EMI e;
+        
+        // [TestMethod]
 
-        [TestMethod, Priority(1)]
-        public void test()
-        {
-            e.EMIWithValidValues();
-        }
-        //Operations of Scientific Calculator
-        //Addition
-
-        [TestMethod, Priority(1)]
-            public void Addition()
+        [TestMethod]
+        public void Addition()
         {
             Add = new Addition(driver);
             Add.ClearScreen();
@@ -44,7 +56,7 @@ namespace ScientificCalculator.Test_Class
         }
 
         //Subtraction
-        [TestMethod, Priority(2)]
+        [TestMethod]
         public void Subtraction()
         {
             Sub = new Subtraction(driver);
@@ -62,7 +74,7 @@ namespace ScientificCalculator.Test_Class
         }
 
         //Multiplication
-       [TestMethod, Priority(3)]
+        [TestMethod]
         public void Multiplication()
         {
             Mul = new Multiplication(driver);
@@ -77,9 +89,9 @@ namespace ScientificCalculator.Test_Class
             Mul.ErrorHandling();
             Mul.LargeNumbersMultiplication();
         }
-       
+
         //Division
-      [TestMethod]
+        [TestMethod]
         public void Division()
         {
             Div = new Division(driver);
@@ -97,7 +109,7 @@ namespace ScientificCalculator.Test_Class
         }
 
         //Exponent Functions
-       [TestMethod]
+        [TestMethod]
         public void ExponentFunctions()
         {
             Exp = new ExponentFunctions(driver);
@@ -118,8 +130,8 @@ namespace ScientificCalculator.Test_Class
             Exp.TestSquareRootNegativeDecimal();
         }
 
-       // LogarithmicFunctions
-       [TestMethod]
+        // LogarithmicFunctions
+        [TestMethod]
         public void LogarithmicFunctions()
         {
             //LF=  LogarithmicFunctions
@@ -132,11 +144,11 @@ namespace ScientificCalculator.Test_Class
             LF.NaturalLogarithm();
             LF.NaturalLogarithmNegative();
             LF.NaturalLogarithmNegativeDecimal();
-            LF.NaturalLogarithmPositiveDecimal();       
+            LF.NaturalLogarithmPositiveDecimal();
         }
 
         // TrignometricFunctions
-       [TestMethod]
+        [TestMethod]
         public void TrignometricFunctions()
         {
             // Tf= TrignometricFunctions

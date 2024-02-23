@@ -4,27 +4,24 @@ using OpenQA.Selenium.Appium;
 using ScientificCalculator.Core;
 using System;
 
-
 namespace ScientificCalculator.Pages
-
 {
-     class Subtraction : TestInitialize
+    class Subtraction : Identifiers_SC
     {
-        private Identifiers_SC I;
-        public Subtraction(AppiumDriver<IWebElement> driver)
+        public Subtraction(AppiumDriver<IWebElement> driver) : base(driver)
         {
-            // Initialize I1 in the constructor
-            I = new Identifiers_SC(driver);
+            // No need to initialize I in the constructor anymore
         }
+
         public void ClearScreen()
         {
-            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            if (!string.IsNullOrEmpty(GetFinalResult().Text))
             {
                 // If not clear, perform the clear operation
-                I.ClearScreen.Click();
+                GetClearScreen().Click();
 
                 // You can add an assertion or print a message to verify the clear operation
-                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+                Assert.IsTrue(string.IsNullOrEmpty(GetFinalResult().Text), "Result screen is not cleared after clicking ClearScreen.");
 
                 // Or print a message
                 Console.WriteLine("Result screen has been cleared.");
@@ -35,141 +32,140 @@ namespace ScientificCalculator.Pages
                 Console.WriteLine("Result screen is already clear.");
             }
         }
-      
 
-        //Methods for Identifiers like click
+        // Methods for Identifiers like click
         public void BasicSubtration()
         {
-            Assert.IsNotNull(I, "Identifiers instance is not initialized");
-            I.Button5.Click();
-            I.Minus.Click();
-            I.Button3.Click();
-            I.Equal.Click();
-            var SimpleSubtractionResult = I.FinalResult.Text;
+            Assert.IsNotNull(this, "Identifiers instance is not initialized");
+            GetButton5().Click();
+            GetMinus().Click();
+            GetButton3().Click();
+            GetEqual().Click();
+            var SimpleSubtractionResult = GetFinalResult().Text;
             Assert.AreEqual("2", SimpleSubtractionResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         // Subtraction of Decimals
         public void SubtractionOfDecimals()
         {
             // Expected Result: 2.5 - 1.5 = 1
-            I.Button2.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Minus.Click();
-            I.Button1.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Equal.Click();
-            var SubtractionOfDecimalsResult = I.FinalResult.Text;
+            GetButton2().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetMinus().Click();
+            GetButton1().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetEqual().Click();
+            var SubtractionOfDecimalsResult = GetFinalResult().Text;
             Assert.AreEqual("1", SubtractionOfDecimalsResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         // Subtraction of Integer and Decimals
         public void DecimalIntegerSub()
         {
             // Expected Result: 8 - 4.2 = 3.8
-            I.Button8.Click();
-            I.Minus.Click();
-            I.Button4.Click();
-            I.point.Click();
-            I.Button2.Click();
-            I.Equal.Click();
-            var DecimalIntegersub = I.FinalResult.Text;
+            GetButton8().Click();
+            GetMinus().Click();
+            GetButton4().Click();
+            GetPoint().Click();
+            GetButton2().Click();
+            GetEqual().Click();
+            var DecimalIntegersub = GetFinalResult().Text;
             Assert.AreEqual("3.8", DecimalIntegersub, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void SubtractionOfZero()
         {
             // Subtraction of Zero 
             // Expected Result: 0 - 10 = -10
-            I.zero.Click();
-            I.Minus.Click();
-            I.Button1.Click();
-            I.zero.Click();
-            I.Equal.Click();
-            var SubtractionOfZeroResult = I.FinalResult.Text;
+            GetZero().Click();
+            GetMinus().Click();
+            GetButton1().Click();
+            GetZero().Click();
+            GetEqual().Click();
+            var SubtractionOfZeroResult = GetFinalResult().Text;
             Assert.AreEqual("-10", SubtractionOfZeroResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         // Positive-Negative Addition
         public void PositiveNegativeSubtraction()
         {
             // Expected Result: 5 - (-3) = 8
-            I.Button5.Click();
-            I.Minus.Click();
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button3.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var PositiveNegativesubResult = I.FinalResult.Text;
+            GetButton5().Click();
+            GetMinus().Click();
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton3().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var PositiveNegativesubResult = GetFinalResult().Text;
             Assert.AreEqual("8", PositiveNegativesubResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void NegIntSubtraction()
         {
             // Negative Integer Subtraction
             // Expected Result: (-8) - (-4) = -4
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button8.Click();
-            I.Rightbracket.Click();
-            I.Minus.Click();
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button4.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var NegativeIntegerSubtractionResult = I.FinalResult.Text;
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton8().Click();
+            GetRightBracket().Click();
+            GetMinus().Click();
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton4().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var NegativeIntegerSubtractionResult = GetFinalResult().Text;
             Assert.AreEqual("-4", NegativeIntegerSubtractionResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
+
         public void SubtractionOfNegPosDec()
         {
             // Subtraction of Negative Positive Decimals
             // Expected Result: (-7) - 3.5 = -10.5
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button7.Click();
-            I.Rightbracket.Click();
-            I.Minus.Click();
-            I.Button3.Click();
-            I.point.Click();
-            I.Button5.Click();
-          //  I.Rightbracket.Click();
-            I.Equal.Click();
-            var SubtractionOfNegPosDecResult = I.FinalResult.Text;
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton7().Click();
+            GetRightBracket().Click();
+            GetMinus().Click();
+            GetButton3().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetEqual().Click();
+            var SubtractionOfNegPosDecResult = GetFinalResult().Text;
             Assert.AreEqual("-10.5", SubtractionOfNegPosDecResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         // Subtraction of Negative Decimals
         public void SubtractionOfNegativeDecimals()
         {
             // Expected Result: (-2.5) - (-1.5) = -1
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button2.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Minus.Click();
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button1.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var SubtractionOfNegativeDecimalsResult = I.FinalResult.Text;
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton2().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetMinus().Click();
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton1().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var SubtractionOfNegativeDecimalsResult = GetFinalResult().Text;
             Assert.AreEqual("-1", SubtractionOfNegativeDecimalsResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         [TestMethod]
@@ -177,49 +173,48 @@ namespace ScientificCalculator.Pages
         {
             // Error Handling
             // Expected Result: (-7) - 3.5) = Syntax Error Or Infinity
-            I.LeftBracket.Click();
-            I.Minus.Click();
-            I.Button7.Click();
-            I.Rightbracket.Click();
-            I.Plus.Click();
-            I.Button3.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Rightbracket.Click();
-            I.Equal.Click();
-            var ErrorHandlingResult = I.FinalResult.Text;
+            GetLeftBracket().Click();
+            GetMinus().Click();
+            GetButton7().Click();
+            GetRightBracket().Click();
+            GetPlus().Click();
+            GetButton3().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetRightBracket().Click();
+            GetEqual().Click();
+            var ErrorHandlingResult = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", ErrorHandlingResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void LargeNumbersSubtraction()
         {
             // Scenario: Handling of large numbers
             // Expected Result: 999999999 - 888888888 = 111111111
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Button9.Click();
-            I.Minus.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Button8.Click();
-            I.Equal.Click();
-            var LargeNumbersSubtractionResult = I.FinalResult.Text;
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetButton9().Click();
+            GetMinus().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetButton8().Click();
+            GetEqual().Click();
+            var LargeNumbersSubtractionResult = GetFinalResult().Text;
             Assert.AreEqual("111111111", LargeNumbersSubtractionResult, "Result is not as Expected");
-            I.ClearScreen.Click();
-
+            GetClearScreen().Click();
         }
     }
-    }
+}

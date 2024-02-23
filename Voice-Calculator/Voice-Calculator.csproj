@@ -72,7 +72,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Identifiers\EMI_Identifiers.cs" />
     <Compile Include="Pages\Identifiers\Identifiers_SC.cs" />
     <Compile Include="Pages\Scientific-Calculator\Addition.cs" />
     <Compile Include="Pages\Scientific-Calculator\OtherFunctions.cs" />

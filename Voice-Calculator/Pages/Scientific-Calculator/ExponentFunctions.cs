@@ -1,30 +1,27 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using System;
 using ScientificCalculator.Core;
+using System;
 
 namespace ScientificCalculator.Pages
 {
-     class ExponentFunctions : TestInitialize
+    class ExponentFunctions : Identifiers_SC
     {
-        private Identifiers_SC I;
-
-        public ExponentFunctions(AppiumDriver<IWebElement> driver)
+        public ExponentFunctions(AppiumDriver<IWebElement> driver) : base(driver)
         {
-            // Initialize I1 in the constructor
-            I = new Identifiers_SC(driver);
+            // No need to initialize 'I' separately
         }
 
         public void ClearScreen()
         {
-            if (!string.IsNullOrEmpty(I.FinalResult.Text))
+            if (!string.IsNullOrEmpty(GetFinalResult().Text))
             {
                 // If not clear, perform the clear operation
-                I.ClearScreen.Click();
+                GetClearScreen().Click();
 
                 // You can add an assertion or print a message to verify the clear operation
-                Assert.IsTrue(string.IsNullOrEmpty(I.FinalResult.Text), "Result screen is not cleared after clicking ClearScreen.");
+                Assert.IsTrue(string.IsNullOrEmpty(GetFinalResult().Text), "Result screen is not cleared after clicking ClearScreen.");
 
                 // Or print a message
                 Console.WriteLine("Result screen has been cleared.");
@@ -35,205 +32,207 @@ namespace ScientificCalculator.Pages
                 Console.WriteLine("Result screen is already clear.");
             }
         }
-        // Assert.IsNotNull(I, "Identifiers instance is not initialized");
 
         // Exponent
         public void PowerFunction()
         {
             // Test Data: 2 ^ 5 = 32
-            I.Button2.Click();
-            I.Power.Click();
-            I.Button5.Click();
-            I.Equal.Click();
-            var PowerResult = I.FinalResult.Text;
+            GetButton2().Click();
+            GetPower().Click();
+            GetButton5().Click();
+            GetEqual().Click();
+            var PowerResult = GetFinalResult().Text;
             Assert.AreEqual("32", PowerResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void ExponentOfDecimal()
         {
             // Test Data: 1.5 ^ 2.25 = 
-            I.Button1.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Power.Click();
-            I.Button2.Click();
-            I.point.Click();
-            I.Button2.Click();
-            I.Button5.Click();
-            I.Equal.Click();
+            GetButton1().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetPower().Click();
+            GetButton2().Click();
+            GetPoint().Click();
+            GetButton2().Click();
+            GetButton5().Click();
+            GetEqual().Click();
 
-            var ExponentOfDecimalResult = I.FinalResult.Text;
+            var ExponentOfDecimalResult = GetFinalResult().Text;
             Assert.AreEqual("2.4900343193257237", ExponentOfDecimalResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void ExponentOfNegativeDecimal()
         {
             // Test Data: -1.5 ^ 2.25 = 2.25 
-            I.Minus.Click();
-            I.Button1.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Power.Click();
-            I.Button2.Click();
-            I.point.Click();
-            I.Button2.Click();
-            I.Button5.Click();
-            I.Equal.Click();
+            GetMinus().Click();
+            GetButton1().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetPower().Click();
+            GetButton2().Click();
+            GetPoint().Click();
+            GetButton2().Click();
+            GetButton5().Click();
+            GetEqual().Click();
 
-            var ExponentOfNegDecimalResult = I.FinalResult.Text;
+            var ExponentOfNegDecimalResult = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", ExponentOfNegDecimalResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
+
         public void ExponentOfLargeValue()
         {
             // Test Data: 10 ^ 6 = 1,000,000
-            I.Button1.Click();
-            I.zero.Click();
-            I.Power.Click();
-            I.Button6.Click();
-            I.Equal.Click();
+            GetButton1().Click();
+            GetZero().Click();
+            GetPower().Click();
+            GetButton6().Click();
+            GetEqual().Click();
 
-            var ExponentOfLargeValueResult = I.FinalResult.Text;
+            var ExponentOfLargeValueResult = GetFinalResult().Text;
             Assert.AreEqual("1000000", ExponentOfLargeValueResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void ExponentOfZeroWithNegativePower()
         {
             // Test Data: 0 ^ -6 = error
-            I.zero.Click();
-            I.Power.Click();
-            I.Minus.Click();
-            I.Button6.Click();
-            I.Equal.Click();
+            GetZero().Click();
+            GetPower().Click();
+            GetMinus().Click();
+            GetButton6().Click();
+            GetEqual().Click();
 
-            var ExponentOfZeroWithNegPowerResult = I.FinalResult.Text;
+            var ExponentOfZeroWithNegPowerResult = GetFinalResult().Text;
             Assert.AreEqual("Infinity", ExponentOfZeroWithNegPowerResult, "Result is not as Expected");
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void ExponentOfZeroWithPositivePower()
         {
             // Test Data: 0 ^ 6 = 0
-            I.zero.Click();
-            I.Power.Click();
-            I.Button6.Click();
-            I.Equal.Click();
+            GetZero().Click();
+            GetPower().Click();
+            GetButton6().Click();
+            GetEqual().Click();
 
-            var ExponentOfZeroWithPositivePowerResult = I.FinalResult.Text;
+            var ExponentOfZeroWithPositivePowerResult = GetFinalResult().Text;
             Assert.AreEqual("0", ExponentOfZeroWithPositivePowerResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
+
         public void ExponentOfPosNumberWithZero()
         {
             // Test Data: 6 ^ 0 = 1
-            I.Button6.Click();
-            I.Power.Click();
-            I.zero.Click();
-            I.Equal.Click();
+            GetButton6().Click();
+            GetPower().Click();
+            GetZero().Click();
+            GetEqual().Click();
 
-            var ExponentOfPosNumWithZeroResult = I.FinalResult.Text;
+            var ExponentOfPosNumWithZeroResult = GetFinalResult().Text;
             Assert.AreEqual("1", ExponentOfPosNumWithZeroResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
+
         [TestMethod]
         public void ExponentialDecimalToNegativeExponent()
         {
             // Test Data: 0.5^(-2) = 4
-            I.zero.Click();
-            I.point.Click();
-            I.Button5.Click();
-            I.Power.Click();
-            I.Minus.Click();
-            I.Button2.Click();
-            I.Equal.Click();
+            GetZero().Click();
+            GetPoint().Click();
+            GetButton5().Click();
+            GetPower().Click();
+            GetMinus().Click();
+            GetButton2().Click();
+            GetEqual().Click();
 
-            var exponentialDecimalToNegativeExponentResult = I.FinalResult.Text;
+            var exponentialDecimalToNegativeExponentResult = GetFinalResult().Text;
             Assert.AreEqual("4", exponentialDecimalToNegativeExponentResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void ExponentialXSquare()
         {
             // Test Data: 5 ^ 2 = 25
-            I.Button5.Click();
-            I.Square.Click();
-            I.Equal.Click();
+            GetButton5().Click();
+            GetSquare().Click();
+            GetEqual().Click();
 
-            var exponentialXSquareResult = I.FinalResult.Text;
+            var exponentialXSquareResult = GetFinalResult().Text;
             Assert.AreEqual("25", exponentialXSquareResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void SquareRoot()
         {
             // Test Data: sqrt(4) = 2
-            I.SquareRoot.Click();
-            I.Button4.Click();
-            I.Equal.Click();
+            GetSquareRoot().Click();
+            GetButton4().Click();
+            GetEqual().Click();
 
-            var squareRootResult = I.FinalResult.Text;
+            var squareRootResult = GetFinalResult().Text;
             Assert.AreEqual("2", squareRootResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void SquareRootZero()
         {
             // Test Data: sqrt(0) = 0
-            I.SquareRoot.Click();
-            I.zero.Click();
-            I.Equal.Click();
+            GetSquareRoot().Click();
+            GetZero().Click();
+            GetEqual().Click();
 
-            var squareRootZeroResult = I.FinalResult.Text;
+            var squareRootZeroResult = GetFinalResult().Text;
             Assert.AreEqual("0", squareRootZeroResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
         public void SquareRootNegativeNumber()
         {
             // Test Data: sqrt(-9) = error
-            I.SquareRoot.Click();
-            I.Minus.Click();
-            I.Button9.Click();
-            I.Equal.Click();
+            GetSquareRoot().Click();
+            GetMinus().Click();
+            GetButton9().Click();
+            GetEqual().Click();
 
-            var squareRootNegativeNumberResult = I.FinalResult.Text;
+            var squareRootNegativeNumberResult = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", squareRootNegativeNumberResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
-
 
         public void SquareRootDecimal()
         {
             // Test Data: sqrt(25.0) = 5
-            I.SquareRoot.Click();
-            I.Button2.Click();
-            I.Button5.Click();
-            I.point.Click();
-            I.zero.Click();
-            I.Equal.Click();
+            GetSquareRoot().Click();
+            GetButton2().Click();
+            GetButton5().Click();
+            GetPoint().Click();
+            GetZero().Click();
+            GetEqual().Click();
 
-            var squareRootDecimalResult = I.FinalResult.Text;
+            var squareRootDecimalResult = GetFinalResult().Text;
             Assert.AreEqual("5", squareRootDecimalResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
+
         [TestMethod]
         public void TestSquareRootNegativeDecimal()
         {
             // Test Data: sqrt(-25.0) = error
-            I.SquareRoot.Click();
-            I.Minus.Click();
-            I.Button2.Click();
-            I.Button5.Click();
-            I.point.Click();
-            I.zero.Click();
-            I.Equal.Click();
+            GetSquareRoot().Click();
+            GetMinus().Click();
+            GetButton2().Click();
+            GetButton5().Click();
+            GetPoint().Click();
+            GetZero().Click();
+            GetEqual().Click();
 
-            var squareRootNegDecimalResult = I.FinalResult.Text;
+            var squareRootNegDecimalResult = GetFinalResult().Text;
             Assert.AreEqual("Syntax Error Or Infinity", squareRootNegDecimalResult);
-            I.ClearScreen.Click();
+            GetClearScreen().Click();
         }
 
     }
